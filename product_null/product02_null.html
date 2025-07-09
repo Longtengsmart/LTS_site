@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能开发板 Pro - 产品详情</title>
+    <title>多功能传感器模块 - 产品详情</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -371,7 +371,7 @@
 
         .highlights-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minItems(200px, 1fr));
             gap: 2rem;
         }
 
@@ -400,6 +400,84 @@
         .highlight-label {
             color: var(--text-secondary);
             font-size: 0.95rem;
+        }
+
+        /* Sensor Types */
+        .sensor-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .sensor-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sensor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .sensor-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .sensor-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.15);
+        }
+
+        .sensor-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sensor-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-blue);
+            position: relative;
+            z-index: 2;
+        }
+
+        .sensor-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1rem;
+        }
+
+        .sensor-specs {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sensor-specs small {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
         }
 
         /* Applications */
@@ -490,6 +568,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .sensor-types {
+                grid-template-columns: 1fr;
+            }
+
             .container {
                 padding: 0 1rem;
             }
@@ -520,51 +602,51 @@
             <div class="product-hero">
                 <div class="product-image-section">
                     <div class="product-main-image">
-                        🔧
+                        📡
                     </div>
                     <div class="product-thumbnails">
-                        <div class="thumbnail active">🔧</div>
-                        <div class="thumbnail">📱</div>
-                        <div class="thumbnail">🔌</div>
-                        <div class="thumbnail">📋</div>
+                        <div class="thumbnail active">📡</div>
+                        <div class="thumbnail">🌡️</div>
+                        <div class="thumbnail">💡</div>
+                        <div class="thumbnail">⚙️</div>
                     </div>
                 </div>
 
                 <div class="product-info">
-                    <span class="product-badge">热销产品</span>
-                    <h1 class="product-title">智能开发板 Pro</h1>
-                    <div class="product-price">¥299.00</div>
+                    <span class="product-badge">新品上市</span>
+                    <h1 class="product-title">多功能传感器模块</h1>
+                    <div class="product-price">¥159.00</div>
                     <p class="product-description">
-                        采用高性能ARM Cortex-M4处理器，集成WiFi 6和蓝牙5.0双模块，支持多种传感器接口。
-                        专为IoT开发者设计，提供完整的开发生态和丰富的示例代码，是物联网项目开发的理想选择。
+                        集成温湿度、气压、光照、6轴陀螺仪等多种传感器于一体的高精度数据采集模块。
+                        采用先进的MEMS技术，提供出色的测量精度和稳定性，广泛应用于环境监测、运动检测等领域。
                     </p>
 
                     <div class="product-features">
                         <h3 class="features-title">产品特性</h3>
                         <div class="features-list">
                             <div class="feature-item">
+                                <span class="feature-icon">🏃</span>
+                                <span>6轴陀螺仪+加速度计 高精度运动检测</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🌡️</span>
+                                <span>温湿度+气压传感器 环境监测</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💡</span>
+                                <span>光照强度检测 智能光线感应</span>
+                            </div>
+                            <div class="feature-item">
                                 <span class="feature-icon">⚡</span>
-                                <span>ARM Cortex-M4 168MHz 高性能处理器</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">📶</span>
-                                <span>Wi-Fi 6 + 蓝牙5.0 双模无线连接</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">💾</span>
-                                <span>32MB RAM + 128MB Flash 大容量存储</span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">🔌</span>
-                                <span>20个GPIO接口 丰富的扩展能力</span>
+                                <span>16位高精度ADC 精准数据采集</span>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">🔗</span>
-                                <span>多种通信接口 I2C/SPI/UART</span>
+                                <span>I2C/SPI双接口 灵活连接方式</span>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">🛠️</span>
-                                <span>完整开发生态 丰富示例代码</span>
+                                <span class="feature-icon">🔋</span>
+                                <span>超低功耗设计 延长电池寿命</span>
                             </div>
                         </div>
                     </div>
@@ -581,121 +663,160 @@
                 <h3>核心优势</h3>
                 <div class="highlights-grid">
                     <div class="highlight-item">
-                        <div class="highlight-number">168</div>
-                        <div class="highlight-label">MHz 处理器主频</div>
+                        <div class="highlight-number">8</div>
+                        <div class="highlight-label">种传感器类型</div>
                     </div>
                     <div class="highlight-item">
-                        <div class="highlight-number">32</div>
-                        <div class="highlight-label">MB 运行内存</div>
+                        <div class="highlight-number">16</div>
+                        <div class="highlight-label">位 ADC 精度</div>
                     </div>
                     <div class="highlight-item">
-                        <div class="highlight-number">20</div>
-                        <div class="highlight-label">个 GPIO 接口</div>
+                        <div class="highlight-number">8K</div>
+                        <div class="highlight-label">Hz 最高采样率</div>
                     </div>
                     <div class="highlight-item">
-                        <div class="highlight-number">≤10</div>
+                        <div class="highlight-number">≤3</div>
                         <div class="highlight-label">μA 休眠功耗</div>
                     </div>
                 </div>
             </div>
+
+            <!-- Sensor Types -->
+            <section class="section">
+                <h2 class="section-title">传感器类型</h2>
+                <div class="sensor-types">
+                    <div class="sensor-card">
+                        <div class="sensor-icon">🏃‍♂️</div>
+                        <h4>6轴运动传感器</h4>
+                        <p>集成3轴陀螺仪和3轴加速度计，精确检测物体的运动状态、姿态角度和加速度变化。</p>
+                        <div class="sensor-specs">
+                            <small>陀螺仪: ±2000°/s | 加速度计: ±16g | 精度: 16位</small>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-icon">🌡️</div>
+                        <h4>温湿度传感器</h4>
+                        <p>高精度数字式温湿度传感器，适用于各种环境监测应用，提供稳定可靠的测量结果。</p>
+                        <div class="sensor-specs">
+                            <small>温度: -40°C~+85°C | 湿度: 0~100%RH | 精度: ±0.3°C/±2%RH</small>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-icon">🌪️</div>
+                        <h4>气压传感器</h4>
+                        <p>高分辨率数字气压传感器，可用于海拔测量、天气预测和气压监测等应用。</p>
+                        <div class="sensor-specs">
+                            <small>量程: 300~1100hPa | 精度: ±0.12hPa | 分辨率: 0.01hPa</small>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-icon">💡</div>
+                        <h4>光照传感器</h4>
+                        <p>宽动态范围的数字光照传感器，能够精确测量从微弱到强烈的光线强度。</p>
+                        <div class="sensor-specs">
+                            <small>量程: 0.01~40000lux | 响应: 人眼光谱 | 精度: 典型±20%</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Technical Specifications -->
             <section class="section">
                 <h2 class="section-title">详细规格</h2>
                 <div class="specs-grid">
                     <div class="spec-category">
-                        <h3>🔧 处理器与内存</h3>
+                        <h3>🏃 运动传感器</h3>
                         <div class="spec-item">
-                            <span class="spec-label">处理器</span>
-                            <span class="spec-value">ARM Cortex-M4</span>
+                            <span class="spec-label">陀螺仪</span>
+                            <span class="spec-value">3轴 ±2000°/s</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">主频</span>
-                            <span class="spec-value">168 MHz</span>
+                            <span class="spec-label">加速度计</span>
+                            <span class="spec-value">3轴 ±16g</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">内存</span>
-                            <span class="spec-value">32 MB RAM</span>
+                            <span class="spec-label">分辨率</span>
+                            <span class="spec-value">16位ADC</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">存储</span>
-                            <span class="spec-value">128 MB Flash</span>
+                            <span class="spec-label">采样率</span>
+                            <span class="spec-value">最高8kHz</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">缓存</span>
-                            <span class="spec-value">16KB I-Cache + 16KB D-Cache</span>
-                        </div>
-                    </div>
-
-                    <div class="spec-category">
-                        <h3>📶 无线连接</h3>
-                        <div class="spec-item">
-                            <span class="spec-label">Wi-Fi</span>
-                            <span class="spec-value">802.11ax (Wi-Fi 6)</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">蓝牙</span>
-                            <span class="spec-value">Bluetooth 5.0 LE</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">天线</span>
-                            <span class="spec-value">集成PCB天线</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">传输距离</span>
-                            <span class="spec-value">室内50m，室外150m</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">安全加密</span>
-                            <span class="spec-value">WPA3 / AES-256</span>
+                            <span class="spec-label">带宽</span>
+                            <span class="spec-value">5Hz~1kHz可配置</span>
                         </div>
                     </div>
 
                     <div class="spec-category">
-                        <h3>🔌 接口与外设</h3>
+                        <h3>🌡️ 环境传感器</h3>
                         <div class="spec-item">
-                            <span class="spec-label">GPIO</span>
-                            <span class="spec-value">20个数字IO</span>
+                            <span class="spec-label">温度范围</span>
+                            <span class="spec-value">-40°C ~ +85°C</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">ADC</span>
-                            <span class="spec-value">8个12位ADC</span>
+                            <span class="spec-label">湿度范围</span>
+                            <span class="spec-value">0% ~ 100%RH</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">UART</span>
-                            <span class="spec-value">3个硬件UART</span>
+                            <span class="spec-label">气压范围</span>
+                            <span class="spec-value">300 ~ 1100 hPa</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">I2C/SPI</span>
-                            <span class="spec-value">2个I2C，2个SPI</span>
+                            <span class="spec-label">光照范围</span>
+                            <span class="spec-value">0.01 ~ 40000 lux</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">PWM</span>
-                            <span class="spec-value">8路独立PWM输出</span>
+                            <span class="spec-label">测量精度</span>
+                            <span class="spec-value">温度±0.3°C, 湿度±2%RH</span>
                         </div>
                     </div>
 
                     <div class="spec-category">
-                        <h3>⚡ 电源与物理参数</h3>
+                        <h3>🔗 接口与通信</h3>
                         <div class="spec-item">
-                            <span class="spec-label">供电电压</span>
-                            <span class="spec-value">3.3V / 5V</span>
+                            <span class="spec-label">接口类型</span>
+                            <span class="spec-value">I2C / SPI</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">I2C速率</span>
+                            <span class="spec-value">标准100kHz, 快速400kHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">SPI速率</span>
+                            <span class="spec-value">最高10MHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">中断功能</span>
+                            <span class="spec-value">可编程中断引脚</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">地址选择</span>
+                            <span class="spec-value">可配置I2C地址</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-category">
+                        <h3>⚡ 电源与物理</h3>
+                        <div class="spec-item">
+                            <span class="spec-label">工作电压</span>
+                            <span class="spec-value">2.7V ~ 3.6V</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">工作电流</span>
-                            <span class="spec-value">运行≤200mA</span>
+                            <span class="spec-value">典型1.2mA</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">休眠电流</span>
-                            <span class="spec-value">≤10μA</span>
+                            <span class="spec-value">≤3μA</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">尺寸</span>
-                            <span class="spec-value">65mm × 25mm × 8mm</span>
+                            <span class="spec-label">封装尺寸</span>
+                            <span class="spec-value">25mm × 15mm × 3mm</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">工作温度</span>
-                            <span class="spec-value">-40°C ~ 85°C</span>
+                            <span class="spec-value">-40°C ~ +85°C</span>
                         </div>
                     </div>
                 </div>
@@ -706,34 +827,34 @@
                 <h2 class="section-title">应用领域</h2>
                 <div class="applications-grid">
                     <div class="application-card">
-                        <div class="application-icon">🏠</div>
-                        <h3>智能家居</h3>
-                        <p>智能开关、温控器、安防系统、照明控制等家居设备的核心控制单元，实现家居智能化升级</p>
+                        <div class="application-icon">🌤️</div>
+                        <h3>环境监测</h3>
+                        <p>实时监测温度、湿度、气压、光照等环境参数，适用于气象站、空气质量监测、农业大棚等应用</p>
                     </div>
                     <div class="application-card">
-                        <div class="application-icon">🏭</div>
-                        <h3>工业物联网</h3>
-                        <p>设备状态监控、数据采集、远程控制、预测性维护等工业4.0应用场景</p>
+                        <div class="application-icon">🏃‍♂️</div>
+                        <h3>运动检测</h3>
+                        <p>精确测量物体运动状态、姿态角度，适用于健身追踪器、运动分析、防跌倒检测等应用</p>
+                    </div>
+                    <div class="application-card">
+                        <div class="application-icon">🏠</div>
+                        <h3>智能家居</h3>
+                        <p>自动调节室内环境，智能照明控制，创造舒适居住环境，节能减排</p>
                     </div>
                     <div class="application-card">
                         <div class="application-icon">🌱</div>
-                        <h3>环境监测</h3>
-                        <p>空气质量监测、气象数据采集、土壤监测、水质检测等环境感知应用</p>
+                        <h3>农业物联网</h3>
+                        <p>监测土壤温湿度、光照强度，为精准农业提供数据支持，优化作物生长环境</p>
+                    </div>
+                    <div class="application-card">
+                        <div class="application-icon">🏭</div>
+                        <h3>工业监控</h3>
+                        <p>设备状态监测、振动分析、环境参数监控，提升设备运行效率和安全性</p>
                     </div>
                     <div class="application-card">
                         <div class="application-icon">🚗</div>
-                        <h3>车联网系统</h3>
-                        <p>车载终端、OBD设备、车队管理、车辆监控等智能交通解决方案</p>
-                    </div>
-                    <div class="application-card">
-                        <div class="application-icon">🏥</div>
-                        <h3>智慧医疗</h3>
-                        <p>便携式医疗设备、健康监测、远程医疗、生理参数采集等医疗健康应用</p>
-                    </div>
-                    <div class="application-card">
-                        <div class="application-icon">🎓</div>
-                        <h3>教育科研</h3>
-                        <p>物联网教学实验、原型快速开发、科研项目实现、创新创业项目等教育应用</p>
+                        <h3>车载系统</h3>
+                        <p>车辆姿态检测、环境感知、驾驶行为分析，为智能驾驶提供数据支持</p>
                     </div>
                 </div>
             </section>
