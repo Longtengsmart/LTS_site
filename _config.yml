@@ -1,6 +1,9 @@
 plugins:
   - jekyll-optional-front-matter
 
+# 设置基础URL为仓库名
+baseurl: "/LTS_site"
+
 # 去掉 .html 后缀
 permalink: pretty
 
