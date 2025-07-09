@@ -87,6 +87,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 1rem 2rem;
+            position: relative;
         }
 
         .logo {
@@ -137,6 +138,105 @@
         .nav-links a:hover::after,
         .nav-links a.active::after {
             width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Mobile Menu Drawer */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1600;
+            transition: right 0.3s ease;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 1rem;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary-blue);
+            transform: translateX(5px);
         }
 
         /* Main Content */
@@ -464,8 +564,30 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            nav {
+                justify-content: center;
+                padding: 1rem;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 1.6rem;
+            }
+
             .nav-links {
-                gap: 1.5rem;
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1rem;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
             }
 
             .page-header h1 {
@@ -518,7 +640,24 @@
                 <li><a href="{{ site.baseurl }}/catalog" class="active">产品目录</a></li>
                 <li><a href="{{ site.baseurl }}/about-us">关于我们</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+        
+        <!-- Mobile Menu Drawer -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <span class="logo">隆腾智能</span>
+                <button class="mobile-menu-close" onclick="closeMobileMenu()">✕</button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="{{ site.baseurl }}/" onclick="closeMobileMenu()">首页</a></li>
+                <li><a href="{{ site.baseurl }}/catalog" onclick="closeMobileMenu()">产品目录</a></li>
+                <li><a href="{{ site.baseurl }}/about-us" onclick="closeMobileMenu()">关于我们</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
@@ -680,6 +819,37 @@
                 btn.classList.add('active');
                 // 这里可以添加实际的筛选逻辑
             });
+        });
+
+        // 移动端菜单功能
+        function toggleMobileMenu() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-menu');
+            
+            overlay.classList.toggle('active');
+            menu.classList.toggle('active');
+            
+            if (overlay.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-menu');
+            
+            overlay.classList.remove('active');
+            menu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close menu when clicking outside or pressing escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
