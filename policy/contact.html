@@ -1,0 +1,608 @@
+---
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 | 隆腾智能 - 专业电子产品解决方案</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00d4ff;
+            --primary-purple: #7c3aed;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+            --gradient-3: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-3);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            opacity: 0.85;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 80px 0 60px;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Content Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: var(--gradient-2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            color: var(--primary-blue);
+            margin-top: 0.2rem;
+        }
+
+        .contact-details h4 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .company-info {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .form-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: var(--gradient-2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        .office-hours {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .office-hours h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .content-section,
+            .form-section {
+                padding: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-item {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ site.baseurl }}/" class="logo">隆腾智能</a>
+            <ul class="nav-links">
+                <li><a href="{{ site.baseurl }}/">首页</a></li>
+                <li><a href="{{ site.baseurl }}/catalog">产品目录</a></li>
+                <li><a href="{{ site.baseurl }}/about-us">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>联系我们</h1>
+                <p>期待与您建立合作关系，共同推动智能硬件技术的发展</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="content-section company-info">
+                        <h2>公司信息</h2>
+                        <div class="contact-item">
+                            <span class="contact-icon">🏢</span>
+                            <div class="contact-details">
+                                <h4>公司名称</h4>
+                                <p>中山隆腾智能科技有限公司</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div class="contact-details">
+                                <h4>公司地址</h4>
+                                <p>中山市南朗街道南岐北路大车村大车工业园厂房6卡</p>
+                                <p><span class="highlight">参考位置：</span>中山市源荣塑料模具有限公司旁</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">👤</span>
+                            <div class="contact-details">
+                                <h4>联系人</h4>
+                                <p>李俊鹏</p>
+                                <p>总经理</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div class="contact-details">
+                                <h4>联系电话</h4>
+                                <p>销售热线: 400-123-4567</p>
+                                <p>技术支持: 400-123-4568</p>
+                                <p>总机: 0760-8888-9999</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <h4>电子邮箱</h4>
+                                <p>商务合作: business@longtengsmart.com</p>
+                                <p>技术支持: support@longtengsmart.com</p>
+                                <p>人力资源: hr@longtengsmart.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="office-hours">
+                        <h3>🕒 营业时间</h3>
+                        <div class="hours-item">
+                            <span>周一至周五</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>周六</span>
+                            <span>9:00 - 17:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>周日</span>
+                            <span>休息（紧急技术支持除外）</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>技术支持热线</span>
+                            <span>7×24小时</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>在线留言</h2>
+                    <p style="margin-bottom: 2rem; color: var(--text-secondary);">请填写以下信息，我们将在24小时内回复您</p>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="name">姓名 *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">公司名称</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">联系电话 *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">电子邮箱 *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interest">咨询类型</label>
+                            <select id="interest" name="interest">
+                                <option value="">请选择咨询类型</option>
+                                <option value="product">产品咨询</option>
+                                <option value="technical">技术支持</option>
+                                <option value="cooperation">商务合作</option>
+                                <option value="customization">定制开发</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">详细需求 *</label>
+                            <textarea id="message" name="message" placeholder="请详细描述您的需求或问题，我们将为您提供专业的解决方案..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">发送消息</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>交通指引</h2>
+                <h3>🚗 自驾路线</h3>
+                <p>导航搜索"中山市南朗街道南岐北路大车村大车工业园"，到达工业园后寻找厂房6卡，位于中山市源荣塑料模具有限公司旁边。</p>
+                
+                <h3>🚌 公共交通</h3>
+                <p>可乘坐公交车到达南朗镇，然后转乘出租车或网约车前往大车工业园。具体公交线路请咨询当地交通部门。</p>
+                
+                <h3>🅿️ 停车信息</h3>
+                <p>公司提供免费停车位，访客请将车辆停放在指定区域，并在前台登记。</p>
+            </div>
+
+            <div class="content-section">
+                <h2>业务范围</h2>
+                <p>隆腾智能专注于智能硬件领域，为客户提供从设计到量产的全链条服务：</p>
+                <ul style="color: var(--text-secondary); margin-left: 2rem; margin-top: 1rem;">
+                    <li>智能硬件产品设计与开发</li>
+                    <li>嵌入式系统软件开发</li>
+                    <li>物联网解决方案</li>
+                    <li>产品测试与质量控制</li>
+                    <li>小批量试产与大规模量产</li>
+                    <li>技术培训与售后支持</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="{{ site.baseurl }}/policy/privacy">隐私政策</a>
+                    <a href="{{ site.baseurl }}/policy/terms-and-service">服务条款</a>
+                    <a href="{{ site.baseurl }}/policy/support">技术支持</a>
+                    <a href="{{ site.baseurl }}/policy/contact">联系我们</a>
+                </div>
+                <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
+                <p>专业的智能硬件解决方案提供商</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
