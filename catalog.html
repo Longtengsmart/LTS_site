@@ -97,6 +97,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
+            text-decoration: none;
         }
 
         .nav-links {
@@ -511,11 +512,11 @@
 <body>
     <header>
         <nav>
-            <div class="logo">TechElite</div>
+            <a href="{{ site.baseurl }}/" class="logo">TechElite</a>
             <ul class="nav-links">
-                <li><a href="./">首页</a></li>
-                <li><a href="catalog" class="active">产品目录</a></li>
-                <li><a href="about-us">关于我们</a></li>
+                <li><a href="{{ site.baseurl }}/">首页</a></li>
+                <li><a href="{{ site.baseurl }}/catalog" class="active">产品目录</a></li>
+                <li><a href="{{ site.baseurl }}/about-us">关于我们</a></li>
             </ul>
         </nav>
     </header>
@@ -577,8 +578,8 @@
                             <span class="spec-item">GPIO×20</span>
                         </div>
                         <div class="product-actions">
-                            <a href="product/product01" class="btn btn-primary">查看详情</a>
-                            <a href="product_null/product01_null" class="btn btn-secondary">快速预览</a>
+                            <a href="{{ site.baseurl }}/product/product01" class="btn btn-primary">查看详情</a>
+                            <a href="{{ site.baseurl }}/product_null/product01_null" class="btn btn-secondary">快速预览</a>
                         </div>
                     </div>
                 </div>
@@ -601,8 +602,8 @@
                             <span class="spec-item">3.3V供电</span>
                         </div>
                         <div class="product-actions">
-                            <a href="product/product02" class="btn btn-primary">查看详情</a>
-                            <a href="product_null/product02_null" class="btn btn-secondary">快速预览</a>
+                            <a href="{{ site.baseurl }}/product/product02" class="btn btn-primary">查看详情</a>
+                            <a href="{{ site.baseurl }}/product_null/product02_null" class="btn btn-secondary">快速预览</a>
                         </div>
                     </div>
                 </div>

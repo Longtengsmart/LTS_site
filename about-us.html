@@ -97,6 +97,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
+            text-decoration: none;
         }
 
         .nav-links {
@@ -584,11 +585,11 @@
 <body>
     <header>
         <nav>
-            <div class="logo">TechElite</div>
+            <a href="{{ site.baseurl }}/" class="logo">TechElite</a>
             <ul class="nav-links">
-                <li><a href="./">首页</a></li>
-                <li><a href="catalog">产品目录</a></li>
-                <li><a href="about-us" class="active">关于我们</a></li>
+                <li><a href="{{ site.baseurl }}/">首页</a></li>
+                <li><a href="{{ site.baseurl }}/catalog">产品目录</a></li>
+                <li><a href="{{ site.baseurl }}/about-us" class="active">关于我们</a></li>
             </ul>
         </nav>
     </header>
