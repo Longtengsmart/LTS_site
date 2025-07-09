@@ -1,0 +1,14 @@
+plugins:
+  - jekyll-optional-front-matter
+
+# 去掉 .html 后缀
+permalink: pretty
+
+# 启用相对链接
+relative_links:
+  enabled: true
+  collections: true
+
+# 允许没有front matter的文件
+optional_front_matter:
+  remove_originals: true 
