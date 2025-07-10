@@ -81,6 +81,110 @@
             color: var(--primary-blue);
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Mobile Menu Drawer */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            max-width: 80vw;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1600;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 1rem;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
         /* 主内容区域 */
         main {
             margin-top: 20px;
@@ -113,12 +217,60 @@
             overflow: hidden;
             margin-bottom: 1rem;
             background: var(--card-bg);
+            position: relative;
         }
 
         .main-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 图片画廊缩略图 */
+        .gallery-thumbnails {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            background: var(--card-bg);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .thumbnail:hover {
+            border-color: var(--primary-blue);
+            opacity: 0.8;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 图片加载提示 */
+        .image-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
         .product-info {
@@ -413,6 +565,35 @@
 
         /* 响应式设计 */
         @media (max-width: 768px) {
+            nav {
+                justify-content: center;
+                padding: 1rem;
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 1.6rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+            }
+
             .product-detail {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -454,6 +635,21 @@
             .step-number {
                 margin: 0 auto 1rem;
             }
+
+            /* 移动端图片画廊优化 */
+            .main-image {
+                height: 300px;
+            }
+
+            .gallery-thumbnails {
+                gap: 0.25rem;
+                padding: 0.25rem 0;
+            }
+
+            .thumbnail {
+                width: 60px;
+                height: 45px;
+            }
         }
     </style>
 </head>
@@ -466,6 +662,9 @@
                 <div class="product-gallery">
                     <div class="main-image">
                         <img src="../Static/product02/overview.webp" alt="智能档位显示系统" id="mainImage">
+                    </div>
+                    <div class="gallery-thumbnails" id="galleryThumbnails">
+                        <!-- 动态生成缩略图 -->
                     </div>
                 </div>
 
@@ -549,6 +748,35 @@
             window.location.href = targetUrl;
         }
 
+        // 移动端菜单控制函数
+        function toggleMobileMenu() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-menu');
+            
+            if (overlay && menu) {
+                const isActive = overlay.classList.contains('active');
+                
+                if (isActive) {
+                    closeMobileMenu();
+                } else {
+                    overlay.classList.add('active');
+                    menu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        }
+
+        function closeMobileMenu() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-menu');
+            
+            if (overlay && menu) {
+                overlay.classList.remove('active');
+                menu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
         // WeChat Customer Service Function
         function openWeChatCustomerService() {
             const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
@@ -572,10 +800,31 @@
             }
         }
 
-        // 页面加载时填充产品数据
+        // 页面初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 这里可以通过URL参数或其他方式获取产品ID
-            // 然后从products.json加载对应的产品数据
+            // 初始化移动端菜单事件
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            if (overlay) {
+                overlay.addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                }, { passive: false });
+            }
+            
+            // 键盘事件监听
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            });
+
+            // 窗口大小变化监听
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // 加载产品数据
             loadProductData();
         });
 
@@ -606,7 +855,86 @@
             }
         }
 
+        // 渲染图片画廊
+        function renderImageGallery(product) {
+            console.log('渲染图片画廊，产品数据:', product);
+            const mainImage = document.getElementById('mainImage');
+            const thumbnailsContainer = document.getElementById('galleryThumbnails');
+            
+            if (!product.images) {
+                console.log('产品没有images数据');
+                return;
+            }
+            
+            if (!product.images.gallery) {
+                console.log('产品没有gallery数组，只有main图片');
+                // 如果只有main图片，隐藏缩略图容器
+                if (thumbnailsContainer) {
+                    thumbnailsContainer.style.display = 'none';
+                }
+                return;
+            }
+            
+            console.log('原始gallery数据:', product.images.gallery);
+            
+            // 修复图片路径（添加../ 前缀）
+            const galleryImages = product.images.gallery.map(img => 
+                img.startsWith('../') ? img : '../' + img
+            );
+            
+            console.log('处理后的gallery路径:', galleryImages);
+            
+            // 设置主图片
+            if (galleryImages.length > 0) {
+                mainImage.src = galleryImages[0];
+                mainImage.onerror = function() {
+                    this.style.display = 'none';
+                    this.parentElement.innerHTML = '<div class="image-loading">📷 图片加载失败</div>';
+                };
+            }
+            
+            // 生成缩略图 - 即使只有一张图也显示
+            if (thumbnailsContainer && galleryImages.length > 0) {
+                console.log('生成', galleryImages.length, '个缩略图');
+                thumbnailsContainer.style.display = 'flex';
+                thumbnailsContainer.innerHTML = galleryImages.map((img, index) => `
+                    <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="switchMainImage('${img}', ${index})">
+                        <img src="${img}" alt="产品图片 ${index + 1}" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:0.8rem;\\'>📷</div>'">
+                    </div>
+                `).join('');
+                console.log('缩略图HTML已生成');
+            } else {
+                console.log('缩略图容器未找到或没有图片');
+            }
+        }
+        
+        // 切换主图片
+        function switchMainImage(imageSrc, index) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            // 更新主图片
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = imageSrc;
+                mainImage.style.opacity = '1';
+                mainImage.onerror = function() {
+                    this.style.display = 'none';
+                    this.parentElement.innerHTML = '<div class="image-loading">📷 图片加载失败</div>';
+                };
+            }, 150);
+            
+            // 更新缩略图激活状态
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
         function renderProductData(product) {
+            // 渲染图片画廊
+            renderImageGallery(product);
+            
             // 填充特性列表
             const featureList = document.getElementById('featureList');
             featureList.innerHTML = product.features.map(feature => 
