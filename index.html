@@ -272,9 +272,36 @@
             overflow: hidden;
             display: flex;
             align-items: center;
+            /* 背景图片设置 */
+            background-image: 
+                url('./Static/public/hero-background.jpg'),
+                var(--gradient-3); /* fallback渐变背景 */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
+        /* 背景图片overlay层 - 确保文字可读性 */
         .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(10, 10, 10, 0.7) 0%, 
+                rgba(0, 212, 255, 0.2) 30%, 
+                rgba(124, 58, 237, 0.2) 70%, 
+                rgba(10, 10, 10, 0.7) 100%
+            );
+            z-index: 1;
+        }
+
+        /* 动态光效层 */
+        .hero::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -282,8 +309,9 @@
             transform: translate(-50%, -50%);
             width: min(800px, 100vw);
             height: min(800px, 100vh);
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
+            z-index: 1;
         }
 
         @keyframes pulse {
@@ -293,7 +321,7 @@
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             width: 100%;
             max-width: 100%;
         }
@@ -554,6 +582,15 @@
 
         .footer-links a:hover {
             color: var(--primary-blue);
+        }
+
+        /* 移动端背景图片优化 */
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll; /* 移动端使用scroll而不是fixed */
+                background-size: cover;
+                background-position: center top; /* 移动端优先显示图片上部 */
+            }
         }
 
         /* Responsive Design */
