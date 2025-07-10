@@ -533,6 +533,26 @@
     </div>
 
     <script>
+        // 智能导航函数
+        function navigateToPage(pagePath) {
+            // 获取当前页面的路径信息
+            const currentURL = window.location;
+            const currentOrigin = currentURL.origin;
+            
+            let targetUrl;
+            
+            if (pagePath === '') {
+                // 首页
+                targetUrl = `${currentOrigin}/`;
+            } else {
+                // 其他页面
+                targetUrl = `${currentOrigin}/${pagePath}.html`;
+            }
+            
+            // 导航到目标页面
+            window.location.href = targetUrl;
+        }
+
         // WeChat Customer Service Function
         function openWeChatCustomerService() {
             const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
@@ -565,15 +585,7 @@
 
         // 获取正确的products.json路径
         function getProductsJsonUrl() {
-            // 获取当前页面的路径信息
-            const currentPath = window.location.pathname;
-            
-            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
-            if (currentPath.includes('/LTS_site/')) {
-                return '/LTS_site/products.json';
-            }
-            
-            // 本地开发环境或自定义域名
+            // 产品页面在子目录，使用相对路径回到根目录
             return '../products.json';
         }
 
