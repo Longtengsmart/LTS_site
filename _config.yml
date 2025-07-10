@@ -1,11 +1,11 @@
 plugins:
   - jekyll-optional-front-matter
 
-# 设置基础URL - GitHub Pages部署时为仓库名，自定义域名时为空
-baseurl: "/LTS_site"
+# 设置基础URL - 现在直接部署到根域名，无需子路径
+baseurl: ""
 url: "https://longtengsmart.github.io"
 
-# 当绑定自定义域名时，将上面改为：
+# 如果将来绑定自定义域名：
 # baseurl: ""
 # url: "https://longtengsmart.com"
 

@@ -850,15 +850,7 @@
 
         // 获取正确的products.json路径
         function getProductsJsonUrl() {
-            // 获取当前页面的路径信息
-            const currentPath = window.location.pathname;
-            
-            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
-            if (currentPath.includes('/LTS_site/')) {
-                return '/LTS_site/products.json';
-            }
-            
-            // 本地开发环境或自定义域名
+            // 简化路径处理：所有环境都使用相对路径
             return './products.json';
         }
 
@@ -866,44 +858,22 @@
         function getProductPageUrl(productId) {
             // 获取当前页面的完整URL信息
             const currentURL = window.location;
-            const currentPath = currentURL.pathname;
             const currentOrigin = currentURL.origin;
-            
-            console.log('🔗 生成产品链接调试信息:');
-            console.log('  - 当前完整URL:', currentURL.href);
-            console.log('  - 当前路径:', currentPath);
-            console.log('  - 当前域名:', currentOrigin);
-            console.log('  - 产品ID:', productId);
-            
-            let baseUrl, finalUrl;
-            
-            // 如果是GitHub Pages部署（路径包含项目名）
-            if (currentPath.includes('/LTS_site/')) {
-                // 使用绝对路径，确保不会相对解析
-                finalUrl = `${currentOrigin}/LTS_site/product/${productId}.html`;
-                console.log('✅ GitHub Pages模式，生成完整URL:', finalUrl);
-                return finalUrl;
-            }
             
             // 本地开发环境
             if (currentOrigin.includes('localhost') || currentOrigin.includes('127.0.0.1')) {
                 // 本地环境使用绝对路径（从根目录开始）
-                finalUrl = `/product/${productId}.html`;
-                console.log('✅ 本地开发模式，生成绝对路径:', finalUrl);
-                return finalUrl;
+                return `/product/${productId}.html`;
             }
             
-            // 其他情况（自定义域名等）
-            finalUrl = `/product/${productId}.html`;
-            console.log('✅ 默认模式，生成绝对路径:', finalUrl);
-            return finalUrl;
+            // GitHub Pages或其他生产环境，使用绝对路径
+            return `/product/${productId}.html`;
         }
 
         // 加载产品数据
         async function loadProducts() {
             try {
                 const productsUrl = getProductsJsonUrl();
-                console.log('尝试加载产品数据从:', productsUrl);
                 const response = await fetch(productsUrl);
                 
                 if (!response.ok) {

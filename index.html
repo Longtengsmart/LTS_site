@@ -930,29 +930,13 @@
 
         // 获取正确的products.json路径
         function getProductsJsonUrl() {
-            // 获取当前页面的路径信息
-            const currentPath = window.location.pathname;
-            
-            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
-            if (currentPath.includes('/LTS_site/')) {
-                return '/LTS_site/products.json';
-            }
-            
-            // 本地开发环境或自定义域名
+            // 简化路径处理：所有环境都使用相对路径
             return './products.json';
         }
 
         // 获取正确的产品页面URL
         function getProductPageUrl(productId) {
-            // 获取当前页面的路径信息
-            const currentPath = window.location.pathname;
-            
-            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
-            if (currentPath.includes('/LTS_site/')) {
-                return `/LTS_site/product/${productId}.html`;
-            }
-            
-            // 本地开发环境或自定义域名
+            // 简化路径处理：所有环境都使用相对路径
             return `product/${productId}.html`;
         }
 
@@ -960,7 +944,6 @@
         async function loadHomepageProducts() {
             try {
                 const productsUrl = getProductsJsonUrl();
-                console.log('尝试加载产品数据从:', productsUrl);
                 const response = await fetch(productsUrl);
                 const data = await response.json();
                 const productsGrid = document.getElementById('homepage-products');
