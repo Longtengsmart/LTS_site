@@ -805,7 +805,7 @@
             <div class="product-detail">
                 <div class="product-gallery">
                     <div class="main-image">
-                        <img src="../Static/product01/overview.webp" alt="车载智能显示器 Pro" id="mainImage">
+                        <img src="../../Static/product01/overview.webp" alt="车载智能显示器 Pro" id="mainImage">
                     </div>
                     <div class="gallery-thumbnails" id="galleryThumbnails">
                         <!-- 动态生成缩略图 -->
@@ -890,10 +890,10 @@
             
             if (pagePath === '') {
                 // 首页
-                targetUrl = '../';
+                targetUrl = '../../';
             } else {
                 // 其他页面 - 使用相对路径，无.html后缀
-                targetUrl = `../${pagePath}`;
+                targetUrl = `../../${pagePath}`;
             }
             
             // 导航到目标页面
@@ -977,8 +977,8 @@
 
         // 获取正确的products.json路径
         function getProductsJsonUrl() {
-            // 产品页面在子目录，使用相对路径回到根目录
-            return '../products.json';
+            // 产品页面在更深的子目录，使用相对路径回到根目录
+            return '../../products.json';
         }
 
         async function loadProductData() {
@@ -1024,9 +1024,9 @@
             
             console.log('原始gallery数据:', product.images.gallery);
             
-            // 修复图片路径（添加../ 前缀）
+            // 修复图片路径（添加../../ 前缀）
             const galleryImages = product.images.gallery.map(img => 
-                img.startsWith('../') ? img : '../' + img
+                img.startsWith('../../') ? img : '../../' + img
             );
             
             console.log('处理后的gallery路径:', galleryImages);
@@ -1125,7 +1125,7 @@
                 const installationSteps = document.getElementById('installationSteps');
                 installationSteps.innerHTML = product.tutorial.installation.map(step => {
                     const hasImage = step.image && step.image.trim() !== '';
-                    const imagePath = hasImage ? (step.image.startsWith('../') ? step.image : '../' + step.image) : '';
+                    const imagePath = hasImage ? (step.image.startsWith('../../') ? step.image : '../../' + step.image) : '';
                     
                     return `
                         <div class="step-card ${hasImage ? 'with-image' : ''}">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>车载智能显示器 Pro | 隆腾智能</title>
+    <title>智能档位显示系统 | 隆腾智能</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -805,7 +805,7 @@
             <div class="product-detail">
                 <div class="product-gallery">
                     <div class="main-image">
-                        <img src="../Static/product01/overview.webp" alt="车载智能显示器 Pro" id="mainImage">
+                        <img src="../../Static/product02/overview.webp" alt="智能档位显示系统" id="mainImage">
                     </div>
                     <div class="gallery-thumbnails" id="galleryThumbnails">
                         <!-- 动态生成缩略图 -->
@@ -813,9 +813,9 @@
                 </div>
 
                 <div class="product-info">
-                    <span class="product-badge">HOT</span>
-                    <h1 class="product-title">车载智能显示器 Pro</h1>
-                    <p class="product-description">采用10.25英寸高清IPS显示屏，支持1920×720分辨率，集成四核ARM处理器，提供流畅的车载娱乐和导航体验。支持CarPlay/Android Auto，内置GPS导航，CAN总线接口确保与车辆系统完美集成。</p>
+                    <span class="product-badge">NEW</span>
+                    <h1 class="product-title">智能档位显示系统</h1>
+                    <p class="product-description">采用先进的CAN总线通信技术，实时获取车辆档位信息，通过高清数字显示屏呈现P/R/N/D/S/M等档位状态。支持多种驾驶模式切换，提供智能提醒功能，确保驾驶安全。</p>
 
                     <div class="features">
                         <h3>产品特性</h3>
@@ -890,10 +890,10 @@
             
             if (pagePath === '') {
                 // 首页
-                targetUrl = '../';
+                targetUrl = '../../';
             } else {
                 // 其他页面 - 使用相对路径，无.html后缀
-                targetUrl = `../${pagePath}`;
+                targetUrl = `../../${pagePath}`;
             }
             
             // 导航到目标页面
@@ -977,8 +977,8 @@
 
         // 获取正确的products.json路径
         function getProductsJsonUrl() {
-            // 产品页面在子目录，使用相对路径回到根目录
-            return '../products.json';
+            // 产品页面在更深的子目录，使用相对路径回到根目录
+            return '../../products.json';
         }
 
         async function loadProductData() {
@@ -1024,9 +1024,9 @@
             
             console.log('原始gallery数据:', product.images.gallery);
             
-            // 修复图片路径（添加../ 前缀）
+            // 修复图片路径（添加../../ 前缀）
             const galleryImages = product.images.gallery.map(img => 
-                img.startsWith('../') ? img : '../' + img
+                img.startsWith('../../') ? img : '../../' + img
             );
             
             console.log('处理后的gallery路径:', galleryImages);
@@ -1125,7 +1125,7 @@
                 const installationSteps = document.getElementById('installationSteps');
                 installationSteps.innerHTML = product.tutorial.installation.map(step => {
                     const hasImage = step.image && step.image.trim() !== '';
-                    const imagePath = hasImage ? (step.image.startsWith('../') ? step.image : '../' + step.image) : '';
+                    const imagePath = hasImage ? (step.image.startsWith('../../') ? step.image : '../../' + step.image) : '';
                     
                     return `
                         <div class="step-card ${hasImage ? 'with-image' : ''}">
