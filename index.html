@@ -952,8 +952,8 @@
 
         // 获取正确的产品页面URL
         function getProductPageUrl(productId) {
-            // 简化路径处理：所有环境都使用相对路径
-            return `product/${productId}.html`;
+            // 使用Jekyll pretty URLs，去掉.html后缀
+            return `product/${productId}`;
         }
 
         // 加载和渲染首页产品

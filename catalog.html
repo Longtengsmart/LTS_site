@@ -857,9 +857,9 @@
 
         // 获取正确的产品页面URL
         function getProductPageUrl(productId) {
-            // 修复Jekyll pretty URL导致的路径问题
+            // 使用Jekyll pretty URLs，去掉.html后缀
             // catalog页面在/catalog/路径下，需要回到根目录再进入product/
-            return `../product/${productId}.html`;
+            return `../product/${productId}`;
         }
 
         // 加载产品数据
