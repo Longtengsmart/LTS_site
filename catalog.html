@@ -768,11 +768,11 @@
 <body>
     <header>
         <nav>
-            <a href="{{ site.baseurl }}/" class="logo">隆腾智能</a>
+            <a href="./" class="logo">隆腾智能</a>
             <ul class="nav-links">
-                <li><a href="{{ site.baseurl }}/">首页</a></li>
-                <li><a href="{{ site.baseurl }}/catalog">产品目录</a></li>
-                <li><a href="{{ site.baseurl }}/about-us">关于我们</a></li>
+                <li><a href="./">首页</a></li>
+                <li><a href="./catalog.html">产品目录</a></li>
+                <li><a href="./about-us.html">关于我们</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="打开菜单">☰</button>
         </nav>
@@ -787,9 +787,9 @@
                 <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="关闭菜单">✕</button>
             </div>
             <ul class="mobile-nav-links">
-                <li><a href="{{ site.baseurl }}/" onclick="closeMobileMenu()">首页</a></li>
-                <li><a href="{{ site.baseurl }}/catalog" onclick="closeMobileMenu()">产品目录</a></li>
-                <li><a href="{{ site.baseurl }}/about-us" onclick="closeMobileMenu()">关于我们</a></li>
+                <li><a href="./" onclick="closeMobileMenu()">首页</a></li>
+                <li><a href="./catalog.html" onclick="closeMobileMenu()">产品目录</a></li>
+                <li><a href="./about-us.html" onclick="closeMobileMenu()">关于我们</a></li>
             </ul>
         </div>
     </header>
@@ -827,10 +827,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="{{ site.baseurl }}/policy/privacy">隐私政策</a>
-                    <a href="{{ site.baseurl }}/policy/terms-and-service">服务条款</a>
-                    <a href="{{ site.baseurl }}/policy/support">技术支持</a>
-                    <a href="{{ site.baseurl }}/policy/contact">联系我们</a>
+                    <a href="./policy/privacy.html">隐私政策</a>
+                    <a href="./policy/terms-and-service.html">服务条款</a>
+                    <a href="./policy/support.html">技术支持</a>
+                    <a href="./policy/contact.html">联系我们</a>
                 </div>
                 <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
                 <p>专业的智能汽车配件研发公司</p>
@@ -970,7 +970,7 @@
             const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
             
             // 备用联系方式
-            const contactUrl = '{{ site.baseurl }}/policy/contact';
+            const contactUrl = './policy/contact.html';
             
             // 尝试打开企业微信客服
             try {
