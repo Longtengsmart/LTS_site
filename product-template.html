@@ -581,7 +581,7 @@
                 const productId = urlPath.includes('product01') ? 'product01' : 'product02';
                 
                 // 加载产品数据
-                const response = await fetch('./products.json');
+                const response = await fetch('../products.json');
                 const data = await response.json();
                 const product = data.products.find(p => p.id === productId);
                 

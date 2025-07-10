@@ -863,7 +863,7 @@
                     description: product.shortDescription,
                     specs: product.features.slice(0, 4), // 只取前4个特性
                     image: product.images.main,
-                    link: `product/${product.id}`
+                    link: `product/${product.id}.html`
                 }));
                 
                 // 加载完成后渲染产品
@@ -922,14 +922,16 @@
         });
 
         // Prevent body scroll when menu is open
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializePage() {
             const overlay = document.querySelector('.mobile-menu-overlay');
             if (overlay) {
                 overlay.addEventListener('touchmove', function(e) {
                     e.preventDefault();
                 }, { passive: false });
             }
-        });
+            // 加载产品数据
+            loadProducts();
+        }
 
         // WeChat Customer Service Function
         function openWeChatCustomerService() {
@@ -1029,9 +1031,7 @@
         }
 
         // 初始化页面
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProducts(); // 加载产品数据并渲染
-        });
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
