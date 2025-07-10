@@ -1,0 +1,133 @@
+{
+  "products": [
+    {
+      "id": "product01",
+      "name": "车载智能显示器 Pro",
+      "category": "显示器",
+      "badge": "HOT",
+      "price": "¥2,999.00",
+      "shortDescription": "高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能，提升驾驶体验与行车安全。",
+      "longDescription": "采用10.25英寸高清IPS显示屏，支持1920×720分辨率，集成四核ARM处理器，提供流畅的车载娱乐和导航体验。支持CarPlay/Android Auto，内置GPS导航，CAN总线接口确保与车辆系统完美集成。",
+      "images": {
+        "main": "Static/product01/overview.webp",
+        "gallery": [
+          "Static/product01/overview.webp",
+          "Static/product01/detail1.webp",
+          "Static/product01/detail2.webp",
+          "Static/product01/installation.webp"
+        ]
+      },
+      "features": [
+        "10.25英寸高清屏",
+        "触控操作",
+        "CarPlay支持",
+        "GPS导航",
+        "CAN总线接口",
+        "四核处理器"
+      ],
+      "specifications": {
+        "显示屏参数": {
+          "屏幕尺寸": "10.25英寸",
+          "分辨率": "1920×720像素",
+          "触控技术": "电容式多点触控",
+          "亮度": "1000cd/m²"
+        },
+        "系统配置": {
+          "处理器": "四核ARM Cortex-A53",
+          "内存": "4GB RAM",
+          "存储": "64GB eMMC",
+          "操作系统": "Android 11车载版"
+        },
+        "连接接口": {
+          "CAN总线": "CAN-FD 2.0",
+          "USB接口": "2×USB-A，1×USB-C",
+          "音频接口": "Line Out，Mic In",
+          "无线连接": "Wi-Fi 6，蓝牙5.2"
+        },
+        "物理参数": {
+          "供电电压": "12V/24V车载电源",
+          "功耗": "运行≤15W，待机≤2W",
+          "尺寸": "248×68×15mm",
+          "工作温度": "-30°C ~ 85°C"
+        }
+      },
+      "applications": [
+        {
+          "icon": "🚙",
+          "title": "SUV车型",
+          "description": "适配各类SUV车型，提供大屏导航和娱乐系统，提升驾乘体验"
+        },
+        {
+          "icon": "🚗",
+          "title": "轿车车型", 
+          "description": "集成到轿车中控台，提供智能化的车辆信息显示和控制功能"
+        },
+        {
+          "icon": "🚐",
+          "title": "商用车辆",
+          "description": "为货车、客车等商用车辆提供专业的导航和车队管理功能"
+        }
+      ]
+    },
+    {
+      "id": "product02",
+      "name": "智能档位显示系统",
+      "category": "控制系统", 
+      "badge": "NEW",
+      "price": "¥1,599.00",
+      "shortDescription": "智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性。",
+      "longDescription": "采用先进的CAN总线通信技术，实时获取车辆档位信息，通过高清数字显示屏呈现P/R/N/D/S/M等档位状态。支持多种驾驶模式切换，提供智能提醒功能，确保驾驶安全。",
+      "images": {
+        "main": "Static/product02/overview.webp",
+        "gallery": [
+          "Static/product02/overview.webp",
+          "Static/product02/detail1.webp",
+          "Static/product02/detail2.webp"
+        ]
+      },
+      "features": [
+        "数字档位显示",
+        "驾驶模式切换", 
+        "智能提醒",
+        "CAN总线接口",
+        "IP67防护",
+        "车规级设计"
+      ],
+      "specifications": {
+        "显示功能": {
+          "档位显示": "P/R/N/D/S/M模式",
+          "驾驶模式": "经济/舒适/运动/自定义",
+          "显示精度": "实时响应 <10ms",
+          "警报功能": "声音+视觉双重提醒",
+          "亮度调节": "自动/手动调节"
+        },
+        "电气特性": {
+          "工作电压": "12V/24V车载电源",
+          "工作电流": "150mA (典型值)",
+          "待机电流": "< 5mA", 
+          "接口类型": "CAN-FD 2.0 / LIN",
+          "通信速率": "最高 5Mbps (CAN-FD)"
+        },
+        "物理规格": {
+          "尺寸": "85mm × 45mm",
+          "厚度": "12mm",
+          "重量": "120g",
+          "工作温度": "-30°C ~ +85°C",
+          "防护等级": "IP67"
+        }
+      },
+      "applications": [
+        {
+          "icon": "🚗",
+          "title": "乘用车辆",
+          "description": "轿车、SUV等乘用车型，提供精确的档位显示和驾驶模式切换功能"
+        },
+        {
+          "icon": "🚐", 
+          "title": "商用车辆",
+          "description": "货车、客车等商用车型，提供可靠的档位信息显示，确保安全运输"
+        }
+      ]
+    }
+  ]
+} 

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{PRODUCT_NAME} | 隆腾智能</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00d4ff;
+            --primary-purple: #7c3aed;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+            --gradient-3: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏样式 (复用index.html的样式) */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* 主内容区域 */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 产品详情区域 */
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+
+        .product-gallery {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: var(--card-bg);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem 0;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* 产品特性 */
+        .features {
+            margin-bottom: 3rem;
+        }
+
+        .features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 技术规格 */
+        .specifications {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .specifications h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .spec-category {
+            margin-bottom: 2rem;
+        }
+
+        .spec-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .spec-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .spec-row {
+            display: contents;
+        }
+
+        .spec-label {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .spec-value {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            color: var(--text-secondary);
+        }
+
+        /* 应用场景 */
+        .applications {
+            margin: 3rem 0;
+        }
+
+        .applications h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 聊天气泡样式 (复用) */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .spec-table {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./" class="logo">隆腾智能</a>
+            <ul class="nav-links">
+                <li><a href="./">首页</a></li>
+                <li><a href="./catalog">产品目录</a></li>
+                <li><a href="./about-us">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="product-detail">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="{MAIN_IMAGE}" alt="{PRODUCT_NAME}" id="mainImage">
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <span class="product-badge">{BADGE}</span>
+                    <h1 class="product-title">{PRODUCT_NAME}</h1>
+                    <div class="product-price">{PRICE}</div>
+                    <p class="product-description">{LONG_DESCRIPTION}</p>
+
+                    <div class="features">
+                        <h3>产品特性</h3>
+                        <div class="feature-list" id="featureList">
+                            <!-- 动态生成特性列表 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specifications">
+                <h2>技术规格</h2>
+                <div id="specificationsList">
+                    <!-- 动态生成规格列表 -->
+                </div>
+            </div>
+
+            <div class="applications">
+                <h2>应用场景</h2>
+                <div class="app-grid" id="applicationsList">
+                    <!-- 动态生成应用场景 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openWeChatCustomerService()">
+        <div class="chat-icon">💬</div>
+    </div>
+
+    <script>
+        // WeChat Customer Service Function
+        function openWeChatCustomerService() {
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
+            
+            try {
+                const isWeChat = /micromessenger/i.test(navigator.userAgent);
+                const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+                
+                if (isWeChat) {
+                    window.location.href = wechatServiceUrl;
+                } else if (isMobile) {
+                    window.location.href = wechatServiceUrl;
+                } else {
+                    const newWindow = window.open(wechatServiceUrl, '_blank', 'width=400,height=600');
+                    if (!newWindow) {
+                        window.location.href = wechatServiceUrl;
+                    }
+                }
+            } catch (error) {
+                window.location.href = './policy/contact';
+            }
+        }
+
+        // 页面加载时填充产品数据
+        document.addEventListener('DOMContentLoaded', function() {
+            // 这里可以通过URL参数或其他方式获取产品ID
+            // 然后从products.json加载对应的产品数据
+            loadProductData();
+        });
+
+        async function loadProductData() {
+            try {
+                // 从URL获取产品ID
+                const urlPath = window.location.pathname;
+                const productId = urlPath.includes('product01') ? 'product01' : 'product02';
+                
+                // 加载产品数据
+                const response = await fetch('./products.json');
+                const data = await response.json();
+                const product = data.products.find(p => p.id === productId);
+                
+                if (product) {
+                    renderProductData(product);
+                }
+            } catch (error) {
+                console.error('加载产品数据失败:', error);
+            }
+        }
+
+        function renderProductData(product) {
+            // 填充特性列表
+            const featureList = document.getElementById('featureList');
+            featureList.innerHTML = product.features.map(feature => 
+                `<div class="feature-item">${feature}</div>`
+            ).join('');
+
+            // 填充技术规格
+            const specsList = document.getElementById('specificationsList');
+            let specsHTML = '';
+            for (const [category, specs] of Object.entries(product.specifications)) {
+                specsHTML += `
+                    <div class="spec-category">
+                        <h3>${category}</h3>
+                        <div class="spec-table">
+                `;
+                for (const [key, value] of Object.entries(specs)) {
+                    specsHTML += `
+                        <div class="spec-row">
+                            <div class="spec-label">${key}</div>
+                            <div class="spec-value">${value}</div>
+                        </div>
+                    `;
+                }
+                specsHTML += `</div></div>`;
+            }
+            specsList.innerHTML = specsHTML;
+
+            // 填充应用场景
+            const appsList = document.getElementById('applicationsList');
+            appsList.innerHTML = product.applications.map(app => `
+                <div class="app-card">
+                    <div class="app-icon">${app.icon}</div>
+                    <h3>${app.title}</h3>
+                    <p>${app.description}</p>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html> 
