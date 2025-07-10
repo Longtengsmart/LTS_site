@@ -651,6 +651,14 @@
             }
         }
 
+        /* 产品价格样式 */
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 1rem 0;
+        }
+
         /* Chat Bubble */
         .chat-bubble {
             position: fixed;
@@ -847,6 +855,35 @@
                             <a href="product/product02" class="btn btn-primary">查看详情</a>
                         </div>
                     </div>
+                </div>'">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">HOT</span>
+                            <h3>车载智能显示器 Pro</h3>
+                            <p>高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能，提升驾驶体验与行车安全。</p>
+                            <div class="product-specs">
+                                <span class="spec-item">10.25英寸高清屏</span><span class="spec-item">触控操作</span><span class="spec-item">CarPlay支持</span><span class="spec-item">GPS导航</span>
+                            </div>
+                            <div class="product-price">¥2,999.00</div>
+                            <a href="product/product01" class="btn btn-primary">查看详情</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Static/product02/overview.webp" alt="智能档位显示系统" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>📱 智能档位显示系统</div>'">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">NEW</span>
+                            <h3>智能档位显示系统</h3>
+                            <p>智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性。</p>
+                            <div class="product-specs">
+                                <span class="spec-item">数字档位显示</span><span class="spec-item">驾驶模式切换</span><span class="spec-item">智能提醒</span><span class="spec-item">CAN总线接口</span>
+                            </div>
+                            <div class="product-price">¥1,599.00</div>
+                            <a href="product/product02" class="btn btn-primary">查看详情</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -874,49 +911,40 @@
     </div>
 
     <script>
-        // 产品数据
-        const products = [
-            {
-                id: 'product01',
-                name: '车载智能显示器 Pro',
-                category: '显示器',
-                badge: 'HOT',
-                description: '高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能，提升驾驶体验与行车安全。',
-                specs: ['10.25英寸高清屏', '触控操作', 'CarPlay支持', 'GPS导航'],
-                image: 'Static/product01/overview.webp',
-                link: '{{ site.baseurl }}/product/product01'
-            },
-            {
-                id: 'product02',
-                name: '智能档位显示系统',
-                category: '控制系统',
-                badge: 'NEW',
-                description: '智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性。',
-                specs: ['数字档位显示', '驾驶模式切换', '智能提醒', 'CAN总线接口'],
-                image: 'Static/product02/overview.webp',
-                link: '{{ site.baseurl }}/product/product02'
-            },
-            {
-                id: 'product03',
-                name: '智能环境监测传感器',
-                category: '传感器',
-                badge: '',
-                description: '实时监测车内环境，包括温度、湿度、空气质量等参数，提供舒适健康的驾乘环境。',
-                specs: ['温湿度传感器', '空气质量检测', '自动调节', '车载CAN接口'],
-                image: '',
-                link: '#'
-            },
-            {
-                id: 'product04',
-                name: '自动化控制模块',
-                category: '控制模块',
-                badge: '',
-                description: '集成多种车辆控制功能，支持自动灯光、车窗、空调等设备的智能控制和优化。',
-                specs: ['多设备控制', '智能调节', '节能优化', '兼容多车型'],
-                image: '',
-                link: '#'
+        // 产品数据将从products.json动态加载
+        let products = [];
+
+        // 加载产品数据
+        async function loadProducts() {
+            try {
+                const response = await fetch('./products.json');
+                const data = await response.json();
+                
+                // 转换数据格式以兼容现有代码
+                products = data.products.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    category: product.category,
+                    badge: product.badge,
+                    description: product.shortDescription,
+                    specs: product.features.slice(0, 4), // 只取前4个特性
+                    image: product.images.main,
+                    link: `product/${product.id}`,
+                    price: product.price
+                }));
+                
+                // 加载完成后渲染产品
+                renderProducts(products);
+                initializeFilters();
+            } catch (error) {
+                console.error('加载产品数据失败:', error);
+                // 如果加载失败，显示错误信息
+                const grid = document.getElementById('products-grid');
+                if (grid) {
+                    grid.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">产品数据加载失败，请刷新页面重试</p>';
+                }
             }
-        ];
+        }
 
         function toggleMobileMenu() {
             const overlay = document.querySelector('.mobile-menu-overlay');
@@ -1027,6 +1055,7 @@
                         <div class="product-specs">
                             ${product.specs.map(spec => `<span class="spec-item">${spec}</span>`).join('')}
                         </div>
+                        ${product.price ? `<div class="product-price">${product.price}</div>` : ''}
                         <a href="${product.link}" class="btn btn-primary">查看详情</a>
                     </div>
                 `;
@@ -1058,9 +1087,18 @@
             renderProducts(filteredProducts);
         }
 
+        // 初始化过滤器
+        function initializeFilters() {
+            // 设置第一个筛选按钮为激活状态
+            const firstFilterBtn = document.querySelector('.filter-btn');
+            if (firstFilterBtn) {
+                firstFilterBtn.classList.add('active');
+            }
+        }
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
-            renderProducts(products);
+            loadProducts(); // 加载产品数据并渲染
         });
     </script>
 </body>

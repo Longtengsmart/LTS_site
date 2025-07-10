@@ -844,44 +844,8 @@
                     <p>精选我们最受欢迎的智能汽车配件产品，每一件都代表着汽车智能化技术与品质的完美结合</p>
                 </div>
                 
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="Static/product01/overview.webp" alt="车载智能显示器" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>🚗 车载智能显示器</div>'">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-badge">HOT</span>
-                            <h3>车载智能显示器 Pro</h3>
-                            <p>高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能，提升驾驶体验与行车安全。</p>
-                            <div class="product-specs">
-                                <span class="spec-item">10.25英寸高清屏</span>
-                                <span class="spec-item">触控操作</span>
-                                <span class="spec-item">CarPlay支持</span>
-                                <span class="spec-item">GPS导航</span>
-                            </div>
-                            <a href="{{ site.baseurl }}/product/product01" class="btn btn-primary">查看详情</a>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="Static/product02/overview.webp" alt="智能档位显示系统" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>⚙️ 智能档位显示系统</div>'">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-badge">NEW</span>
-                            <h3>智能档位显示系统</h3>
-                            <p>智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性。</p>
-                            <div class="product-specs">
-                                <span class="spec-item">数字档位显示</span>
-                                <span class="spec-item">驾驶模式切换</span>
-                                <span class="spec-item">智能提醒</span>
-                                <span class="spec-item">CAN总线接口</span>
-                            </div>
-                            <a href="{{ site.baseurl }}/product/product02" class="btn btn-primary">查看详情</a>
-                        </div>
-                    </div>
+                <div class="product-grid" id="homepage-products">
+                    <!-- 产品将从products.json动态加载 -->
                 </div>
             </div>
         </section>
@@ -959,7 +923,60 @@
                     e.preventDefault();
                 }, { passive: false });
             }
+            
+            // 加载首页产品
+            loadHomepageProducts();
         });
+
+        // 加载和渲染首页产品
+        async function loadHomepageProducts() {
+            try {
+                const response = await fetch('./products.json');
+                const data = await response.json();
+                const productsGrid = document.getElementById('homepage-products');
+                
+                if (!productsGrid) return;
+                
+                // 只显示前2个产品作为明星产品
+                const featuredProducts = data.products.slice(0, 2);
+                
+                productsGrid.innerHTML = featuredProducts.map(product => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.images.main}" alt="${product.name}" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\\'>${getProductIcon(product.category)} ${product.name}</div>'">
+                        </div>
+                        <div class="product-info">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                            <h3>${product.name}</h3>
+                            <p>${product.shortDescription}</p>
+                            <div class="product-specs">
+                                ${product.features.slice(0, 4).map(feature => `<span class="spec-item">${feature}</span>`).join('')}
+                            </div>
+                            <a href="product/${product.id}" class="btn btn-primary">查看详情</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('加载产品数据失败:', error);
+                // 如果加载失败，显示默认内容
+                const productsGrid = document.getElementById('homepage-products');
+                if (productsGrid) {
+                    productsGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">产品信息加载中...</p>';
+                }
+            }
+        }
+
+        // 获取产品图标
+        function getProductIcon(category) {
+            const icons = {
+                '显示器': '📱',
+                '控制系统': '⚙️',
+                '传感器': '📡',
+                '控制模块': '🔌'
+            };
+            return icons[category] || '🚗';
+        }
 
         // WeChat Customer Service Function
         function openWeChatCustomerService() {
