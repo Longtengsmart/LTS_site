@@ -32,7 +32,13 @@ def generate_product_page(product, template):
     page_content = template
     page_content = page_content.replace('{PRODUCT_NAME}', product['name'])
     page_content = page_content.replace('{BADGE}', product['badge'])
-    page_content = page_content.replace('{MAIN_IMAGE}', product['images']['main'])
+    
+    # 修复图片路径：产品页面在子目录中，需要添加../ 前缀
+    main_image_path = product['images']['main']
+    if not main_image_path.startswith('../'):
+        main_image_path = '../' + main_image_path
+    page_content = page_content.replace('{MAIN_IMAGE}', main_image_path)
+    
     page_content = page_content.replace('{LONG_DESCRIPTION}', product['longDescription'])
     
     return page_content
@@ -92,7 +98,13 @@ def generate_simplified_page(product, template):
     # 替换基本信息
     page_content = page_content.replace('{PRODUCT_NAME}', product['name'])
     page_content = page_content.replace('{BADGE}', product['badge'])
-    page_content = page_content.replace('{MAIN_IMAGE}', product['images']['main'])
+    
+    # 修复图片路径：简化版页面也在子目录中，需要添加../ 前缀
+    main_image_path = product['images']['main']
+    if not main_image_path.startswith('../'):
+        main_image_path = '../' + main_image_path
+    page_content = page_content.replace('{MAIN_IMAGE}', main_image_path)
+    
     page_content = page_content.replace('{LONG_DESCRIPTION}', product['longDescription'])
     
     # 移除公司信息

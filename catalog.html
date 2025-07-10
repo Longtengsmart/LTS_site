@@ -768,11 +768,11 @@
 <body>
     <header>
         <nav>
-            <a href="./" class="logo">隆腾智能</a>
+            <a href="#" class="logo" onclick="navigateToPage('')">隆腾智能</a>
             <ul class="nav-links">
-                <li><a href="./">首页</a></li>
-                <li><a href="./catalog.html">产品目录</a></li>
-                <li><a href="./about-us.html">关于我们</a></li>
+                <li><a href="#" onclick="navigateToPage('')">首页</a></li>
+                <li><a href="#" onclick="navigateToPage('catalog')" class="current-page">产品目录</a></li>
+                <li><a href="#" onclick="navigateToPage('about-us')">关于我们</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="打开菜单">☰</button>
         </nav>
@@ -787,9 +787,9 @@
                 <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="关闭菜单">✕</button>
             </div>
             <ul class="mobile-nav-links">
-                <li><a href="./" onclick="closeMobileMenu()">首页</a></li>
-                <li><a href="./catalog.html" onclick="closeMobileMenu()">产品目录</a></li>
-                <li><a href="./about-us.html" onclick="closeMobileMenu()">关于我们</a></li>
+                <li><a href="#" onclick="navigateToPage(''); closeMobileMenu()">首页</a></li>
+                <li><a href="#" onclick="navigateToPage('catalog'); closeMobileMenu()">产品目录</a></li>
+                <li><a href="#" onclick="navigateToPage('about-us'); closeMobileMenu()">关于我们</a></li>
             </ul>
         </div>
     </header>
@@ -827,10 +827,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="./policy/privacy.html">隐私政策</a>
-                    <a href="./policy/terms-and-service.html">服务条款</a>
-                    <a href="./policy/support.html">技术支持</a>
-                    <a href="./policy/contact.html">联系我们</a>
+                    <a href="#" onclick="navigateToPage('policy/privacy')">隐私政策</a>
+                    <a href="#" onclick="navigateToPage('policy/terms-and-service')">服务条款</a>
+                    <a href="#" onclick="navigateToPage('policy/support')">技术支持</a>
+                    <a href="#" onclick="navigateToPage('policy/contact')">联系我们</a>
                 </div>
                 <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
                 <p>专业的智能汽车配件研发公司</p>
@@ -964,13 +964,32 @@
             loadProducts();
         }
 
+        // 智能导航函数 - 兼容本地HTTP服务器和GitHub Pages
+        function navigateToPage(pagePath) {
+            let targetUrl;
+            
+            if (pagePath === '') {
+                // 首页
+                targetUrl = './';
+            } else if (pagePath === 'catalog') {
+                // 当前catalog页面，不进行跳转
+                return;
+            } else {
+                // 其他页面
+                targetUrl = `./${pagePath}`;
+            }
+            
+            // 导航到目标页面
+            window.location.href = targetUrl;
+        }
+
         // WeChat Customer Service Function
         function openWeChatCustomerService() {
             // 企业微信客服链接
             const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
             
             // 备用联系方式
-            const contactUrl = './policy/contact.html';
+            const contactUrl = './policy/contact';
             
             // 尝试打开企业微信客服
             try {
