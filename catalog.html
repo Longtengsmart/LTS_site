@@ -886,7 +886,7 @@
                     badge: product.badge,
                     description: product.shortDescription,
                     specs: product.features ? product.features.slice(0, 4) : [], // 只取前4个特性
-                    image: product.images ? product.images.main : '',
+                    image: product.images ? '../' + product.images.main : '', // 修复图片路径
                     link: getProductPageUrl(product.id)
                 }));
                 

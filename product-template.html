@@ -113,12 +113,60 @@
             overflow: hidden;
             margin-bottom: 1rem;
             background: var(--card-bg);
+            position: relative;
         }
 
         .main-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 图片画廊缩略图 */
+        .gallery-thumbnails {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            background: var(--card-bg);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .thumbnail:hover {
+            border-color: var(--primary-blue);
+            opacity: 0.8;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 图片加载提示 */
+        .image-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
         .product-info {
@@ -454,6 +502,21 @@
             .step-number {
                 margin: 0 auto 1rem;
             }
+
+            /* 移动端图片画廊优化 */
+            .main-image {
+                height: 300px;
+            }
+
+            .gallery-thumbnails {
+                gap: 0.25rem;
+                padding: 0.25rem 0;
+            }
+
+            .thumbnail {
+                width: 60px;
+                height: 45px;
+            }
         }
     </style>
 </head>
@@ -475,6 +538,9 @@
                 <div class="product-gallery">
                     <div class="main-image">
                         <img src="{MAIN_IMAGE}" alt="{PRODUCT_NAME}" id="mainImage">
+                    </div>
+                    <div class="gallery-thumbnails" id="galleryThumbnails">
+                        <!-- 动态生成缩略图 -->
                     </div>
                 </div>
 
@@ -617,7 +683,67 @@
             }
         }
 
+        // 渲染图片画廊
+        function renderImageGallery(product) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnailsContainer = document.getElementById('galleryThumbnails');
+            
+            if (!product.images || !product.images.gallery) {
+                console.log('产品没有画廊图片数据');
+                return;
+            }
+            
+            // 修复图片路径（添加../ 前缀）
+            const galleryImages = product.images.gallery.map(img => 
+                img.startsWith('../') ? img : '../' + img
+            );
+            
+            // 设置主图片
+            if (galleryImages.length > 0) {
+                mainImage.src = galleryImages[0];
+                mainImage.onerror = function() {
+                    this.style.display = 'none';
+                    this.parentElement.innerHTML = '<div class="image-loading">📷 图片加载失败</div>';
+                };
+            }
+            
+            // 生成缩略图
+            if (thumbnailsContainer && galleryImages.length > 1) {
+                thumbnailsContainer.innerHTML = galleryImages.map((img, index) => `
+                    <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="switchMainImage('${img}', ${index})">
+                        <img src="${img}" alt="产品图片 ${index + 1}" 
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:0.8rem;\\'>📷</div>'">
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // 切换主图片
+        function switchMainImage(imageSrc, index) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            // 更新主图片
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = imageSrc;
+                mainImage.style.opacity = '1';
+                mainImage.onerror = function() {
+                    this.style.display = 'none';
+                    this.parentElement.innerHTML = '<div class="image-loading">📷 图片加载失败</div>';
+                };
+            }, 150);
+            
+            // 更新缩略图激活状态
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
         function renderProductData(product) {
+            // 渲染图片画廊
+            renderImageGallery(product);
+            
             // 填充特性列表
             const featureList = document.getElementById('featureList');
             featureList.innerHTML = product.features.map(feature => 
