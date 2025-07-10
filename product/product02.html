@@ -482,17 +482,40 @@
         }
 
         .step-card.with-image {
-            grid-template-columns: 80px 1fr 200px;
+            grid-template-columns: 80px 1fr;
             gap: 1.5rem;
         }
 
         .step-image {
-            width: 200px;
-            height: 150px;
-            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            border-radius: 12px;
             overflow: hidden;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .step-image::after {
+            content: '🔍 点击放大';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .step-image:hover::after {
+            opacity: 1;
         }
 
         .step-image img {
@@ -500,10 +523,59 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .step-image:hover img {
             transform: scale(1.05);
+        }
+
+        /* 图片点击放大遮罩 */
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .image-overlay.active {
+            display: flex;
+        }
+
+        .image-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-overlay-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-overlay-close:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .step-image-placeholder {
@@ -677,7 +749,8 @@
 
             .step-image {
                 width: 100%;
-                height: 120px;
+                max-width: 100%;
+                height: 180px;
                 margin-top: 1rem;
             }
 
@@ -804,6 +877,12 @@
         <div class="chat-icon">💬</div>
     </div>
 
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay" onclick="closeImageOverlay()">
+        <div class="image-overlay-close" onclick="closeImageOverlay()">×</div>
+        <img id="overlayImage" src="" alt="">
+    </div>
+
     <script>
         // 智能导航函数 - 适配Jekyll pretty permalinks
         function navigateToPage(pagePath) {
@@ -883,12 +962,7 @@
                 }, { passive: false });
             }
             
-            // 键盘事件监听
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeMobileMenu();
-                }
-            });
+
 
             // 窗口大小变化监听
             window.addEventListener('resize', function() {
@@ -1060,13 +1134,14 @@
                                 <h4>${step.title}</h4>
                                 <p>${step.description}</p>
                                 ${step.tips ? `<div class="step-tips">💡 ${step.tips}</div>` : ''}
+                                ${hasImage ? `
+                                    <div class="step-image">
+                                        <img src="${imagePath}" alt="${step.title}" 
+                                             onclick="openImageOverlay('${imagePath}', '${step.title}')"
+                                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'step-image-placeholder\\'>📷 图片加载失败</div>'">
+                                    </div>
+                                ` : ''}
                             </div>
-                            ${hasImage ? `
-                                <div class="step-image">
-                                    <img src="${imagePath}" alt="${step.title}" 
-                                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'step-image-placeholder\\'>📷 图片加载失败</div>'">
-                                </div>
-                            ` : ''}
                         </div>
                     `;
                 }).join('');
@@ -1105,6 +1180,36 @@
             event.target.classList.add('active');
             document.getElementById(type + '-panel').classList.add('active');
         }
+
+        // 图片遮罩功能
+        function openImageOverlay(imageSrc, altText) {
+            const overlay = document.getElementById('imageOverlay');
+            const overlayImage = document.getElementById('overlayImage');
+            
+            if (overlay && overlayImage) {
+                overlayImage.src = imageSrc;
+                overlayImage.alt = altText || '安装教程图片';
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeImageOverlay() {
+            const overlay = document.getElementById('imageOverlay');
+            
+            if (overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // 添加键盘事件监听器来关闭图片遮罩
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeImageOverlay();
+                closeMobileMenu();
+            }
+        });
     </script>
 </body>
 </html> 
