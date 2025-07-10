@@ -848,10 +848,26 @@
         // 产品数据将从products.json动态加载
         let products = [];
 
+        // 获取正确的products.json路径
+        function getProductsJsonUrl() {
+            // 获取当前页面的路径信息
+            const currentPath = window.location.pathname;
+            
+            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
+            if (currentPath.includes('/LTS_site/')) {
+                return '/LTS_site/products.json';
+            }
+            
+            // 本地开发环境或自定义域名
+            return './products.json';
+        }
+
         // 加载产品数据
         async function loadProducts() {
             try {
-                const response = await fetch('./products.json');
+                const productsUrl = getProductsJsonUrl();
+                console.log('尝试加载产品数据从:', productsUrl);
+                const response = await fetch(productsUrl);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP错误! 状态: ${response.status} ${response.statusText}`);
