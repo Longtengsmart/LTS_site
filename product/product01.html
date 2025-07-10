@@ -481,6 +481,40 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        .step-card.with-image {
+            grid-template-columns: 80px 1fr 200px;
+            gap: 1.5rem;
+        }
+
+        .step-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .step-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .step-image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
         .step-number {
             width: 60px;
             height: 60px;
@@ -632,8 +666,19 @@
                 text-align: center;
             }
 
+            .step-card.with-image {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
             .step-number {
                 margin: 0 auto 1rem;
+            }
+
+            .step-image {
+                width: 100%;
+                height: 120px;
+                margin-top: 1rem;
             }
 
             /* 移动端图片画廊优化 */
@@ -1004,16 +1049,27 @@
             if (product.tutorial) {
                 // 安装步骤
                 const installationSteps = document.getElementById('installationSteps');
-                installationSteps.innerHTML = product.tutorial.installation.map(step => `
-                    <div class="step-card">
-                        <div class="step-number">${step.step}</div>
-                        <div class="step-content">
-                            <h4>${step.title}</h4>
-                            <p>${step.description}</p>
-                            ${step.tips ? `<div class="step-tips">💡 ${step.tips}</div>` : ''}
+                installationSteps.innerHTML = product.tutorial.installation.map(step => {
+                    const hasImage = step.image && step.image.trim() !== '';
+                    const imagePath = hasImage ? (step.image.startsWith('../') ? step.image : '../' + step.image) : '';
+                    
+                    return `
+                        <div class="step-card ${hasImage ? 'with-image' : ''}">
+                            <div class="step-number">${step.step}</div>
+                            <div class="step-content">
+                                <h4>${step.title}</h4>
+                                <p>${step.description}</p>
+                                ${step.tips ? `<div class="step-tips">💡 ${step.tips}</div>` : ''}
+                            </div>
+                            ${hasImage ? `
+                                <div class="step-image">
+                                    <img src="${imagePath}" alt="${step.title}" 
+                                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'step-image-placeholder\\'>📷 图片加载失败</div>'">
+                                </div>
+                            ` : ''}
                         </div>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
 
                 // 使用方法
                 const usageList = document.getElementById('usageList');
