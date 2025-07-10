@@ -5,7 +5,6 @@
       "name": "车载智能显示器 Pro",
       "category": "显示器",
       "badge": "HOT",
-      "price": "¥2,999.00",
       "shortDescription": "高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能，提升驾驶体验与行车安全。",
       "longDescription": "采用10.25英寸高清IPS显示屏，支持1920×720分辨率，集成四核ARM处理器，提供流畅的车载娱乐和导航体验。支持CarPlay/Android Auto，内置GPS导航，CAN总线接口确保与车辆系统完美集成。",
       "images": {
@@ -67,14 +66,88 @@
           "title": "商用车辆",
           "description": "为货车、客车等商用车辆提供专业的导航和车队管理功能"
         }
-      ]
+      ],
+      "tutorial": {
+        "installation": [
+          {
+            "step": 1,
+            "title": "准备安装工具",
+            "description": "准备螺丝刀、电工胶带、万用表等基本工具",
+            "image": "Static/product01/install_step1.webp",
+            "tips": "确保车辆熄火并断开电瓶负极"
+          },
+          {
+            "step": 2,
+            "title": "拆卸原车显示屏",
+            "description": "小心拆下原车中控台面板，断开原显示屏连接线",
+            "image": "Static/product01/install_step2.webp",
+            "tips": "保留原车线束，便于后续连接"
+          },
+          {
+            "step": 3,
+            "title": "连接CAN总线",
+            "description": "将CAN总线接口连接到车辆诊断接口，确保通信正常",
+            "image": "Static/product01/install_step3.webp",
+            "tips": "CAN-H和CAN-L线不能接反"
+          },
+          {
+            "step": 4,
+            "title": "固定显示器",
+            "description": "将智能显示器安装到原车位置，连接电源和信号线",
+            "image": "Static/product01/install_step4.webp",
+            "tips": "确保所有连接牢固，避免行驶中松动"
+          },
+          {
+            "step": 5,
+            "title": "系统调试",
+            "description": "开机测试各项功能，进行系统设置和校准",
+            "image": "Static/product01/install_step5.webp",
+            "tips": "首次开机需要3-5分钟初始化时间"
+          }
+        ],
+        "usage": [
+          {
+            "title": "基本操作",
+            "content": "触摸屏幕唤醒显示器，主界面包含导航、娱乐、车辆信息三大模块。通过手势滑动可以快速切换功能页面。"
+          },
+          {
+            "title": "导航设置",
+            "content": "点击导航图标进入地图界面，支持语音输入目的地。可以设置避开拥堵、最短路径等偏好选项。"
+          },
+          {
+            "title": "CarPlay连接",
+            "content": "iPhone用户可通过USB连接使用CarPlay功能。连接后可以使用Siri语音助手、苹果地图、音乐等应用。"
+          },
+          {
+            "title": "车辆信息监控",
+            "content": "实时显示车速、转速、水温、油耗等信息。支持故障码读取和清除功能，帮助及时发现车辆问题。"
+          },
+          {
+            "title": "个性化设置",
+            "content": "可以自定义界面主题、调节屏幕亮度、设置声音提示等。支持多用户配置，每个驾驶员都可以有独立设置。"
+          }
+        ],
+        "maintenance": [
+          {
+            "title": "日常清洁",
+            "content": "使用柔软的超细纤维布清洁屏幕，避免使用酒精或化学清洁剂。定期检查连接线是否松动。"
+          },
+          {
+            "title": "软件更新",
+            "content": "定期检查系统更新，可通过Wi-Fi或USB进行固件升级。更新前请确保电量充足，避免断电造成系统损坏。"
+          },
+          {
+            "title": "故障排除",
+            "content": "如遇黑屏或卡顿，可尝试重启设备。长按电源键10秒可强制重启。若问题持续，请联系技术支持。"
+          }
+        ]
+      }
     },
     {
       "id": "product02",
       "name": "智能档位显示系统",
       "category": "控制系统", 
       "badge": "NEW",
-      "price": "¥1,599.00",
       "shortDescription": "智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性。",
       "longDescription": "采用先进的CAN总线通信技术，实时获取车辆档位信息，通过高清数字显示屏呈现P/R/N/D/S/M等档位状态。支持多种驾驶模式切换，提供智能提醒功能，确保驾驶安全。",
       "images": {
@@ -127,7 +200,82 @@
           "title": "商用车辆",
           "description": "货车、客车等商用车型，提供可靠的档位信息显示，确保安全运输"
         }
-      ]
+      ],
+      "tutorial": {
+        "installation": [
+          {
+            "step": 1,
+            "title": "位置选择",
+            "description": "选择合适的安装位置，一般安装在仪表台或中控台易于观察的位置",
+            "image": "Static/product02/install_step1.webp",
+            "tips": "避免阳光直射和高温区域"
+          },
+          {
+            "step": 2,
+            "title": "接线准备",
+            "description": "确认车辆CAN总线位置，通常在OBD诊断接口或仪表台后方",
+            "image": "Static/product02/install_step2.webp",
+            "tips": "参考车辆维修手册确认CAN总线针脚"
+          },
+          {
+            "step": 3,
+            "title": "设备连接",
+            "description": "连接CAN-H(6号针脚)和CAN-L(14号针脚)，连接12V电源和地线",
+            "image": "Static/product02/install_step3.webp",
+            "tips": "使用万用表确认电压正确"
+          },
+          {
+            "step": 4,
+            "title": "固定安装",
+            "description": "使用双面胶或支架将显示器固定在选定位置",
+            "image": "Static/product02/install_step4.webp",
+            "tips": "确保不妨碍驾驶视线和其他操作"
+          },
+          {
+            "step": 5,
+            "title": "功能测试",
+            "description": "启动车辆，测试档位显示是否正常，检查各模式切换功能",
+            "image": "Static/product02/install_step5.webp",
+            "tips": "测试P、R、N、D等各个档位显示"
+          }
+        ],
+        "usage": [
+          {
+            "title": "档位识别",
+            "content": "系统会自动识别当前档位状态，通过清晰的字母显示P(停车)、R(倒档)、N(空档)、D(前进)、S(运动)、M(手动)等模式。"
+          },
+          {
+            "title": "驾驶模式切换",
+            "content": "支持经济、舒适、运动、自定义四种驾驶模式。通过按键或触摸操作可以快速切换，每种模式都有对应的显示颜色和提示音。"
+          },
+          {
+            "title": "智能提醒功能",
+            "content": "当档位切换异常或系统检测到潜在问题时，会发出声音和视觉警报。例如：未完全挂入档位、高速倒车提醒等。"
+          },
+          {
+            "title": "亮度调节",
+            "content": "显示器支持自动亮度调节，根据环境光线自动调整显示亮度。也可以手动设置白天和夜间两种亮度模式。"
+          },
+          {
+            "title": "数据记录",
+            "content": "系统可以记录档位切换频率、驾驶模式使用情况等数据，帮助分析驾驶习惯，优化车辆性能设置。"
+          }
+        ],
+        "maintenance": [
+          {
+            "title": "定期检查",
+            "content": "每月检查一次显示器工作状态，确认各档位显示准确。检查连接线是否松动，特别是CAN总线连接。"
+          },
+          {
+            "title": "清洁保养",
+            "content": "使用干净的软布擦拭显示屏表面，避免使用腐蚀性清洁剂。保持安装位置周围清洁，防止灰尘影响散热。"
+          },
+          {
+            "title": "故障处理",
+            "content": "如显示异常或无显示，首先检查电源连接和保险丝。若CAN通信失败，检查总线连接是否正确。必要时联系技术支持。"
+          }
+        ]
+      }
     }
   ]
 } 

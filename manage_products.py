@@ -37,7 +37,6 @@ def list_products(data):
     print("-" * 50)
     for i, product in enumerate(data['products'], 1):
         print(f"{i}. {product['name']} ({product['id']})")
-        print(f"   💰 价格: {product['price']}")
         print(f"   🏷️  标签: {product['badge']}")
         print(f"   📝 简介: {product['shortDescription'][:50]}...")
         print()
@@ -66,7 +65,6 @@ def add_product(data):
     
     category = input("📂 产品类别 (如: 显示器): ").strip() or "未分类"
     badge = input("🏷️  产品标签 (如: HOT/NEW): ").strip() or "NEW"
-    price = input("💰 产品价格 (如: ¥2,999.00): ").strip() or "¥0.00"
     
     short_desc = input("📝 简短描述: ").strip()
     if not short_desc:
@@ -127,7 +125,6 @@ def add_product(data):
         "name": name,
         "category": category,
         "badge": badge,
-        "price": price,
         "shortDescription": short_desc,
         "longDescription": long_desc,
         "images": {
@@ -163,7 +160,6 @@ def add_product(data):
     print("\n✅ 产品信息准备完成！")
     print(f"产品名称: {name}")
     print(f"产品ID: {product_id}")
-    print(f"价格: {price}")
     
     confirm = input("\n确认保存？(y/N): ").strip().lower()
     if confirm == 'y':

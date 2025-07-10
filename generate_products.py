@@ -32,7 +32,6 @@ def generate_product_page(product, template):
     page_content = template
     page_content = page_content.replace('{PRODUCT_NAME}', product['name'])
     page_content = page_content.replace('{BADGE}', product['badge'])
-    page_content = page_content.replace('{PRICE}', product['price'])
     page_content = page_content.replace('{MAIN_IMAGE}', product['images']['main'])
     page_content = page_content.replace('{LONG_DESCRIPTION}', product['longDescription'])
     
@@ -93,7 +92,6 @@ def generate_simplified_page(product, template):
     # 替换基本信息
     page_content = page_content.replace('{PRODUCT_NAME}', product['name'])
     page_content = page_content.replace('{BADGE}', product['badge'])
-    page_content = page_content.replace('{PRICE}', product['price'])
     page_content = page_content.replace('{MAIN_IMAGE}', product['images']['main'])
     page_content = page_content.replace('{LONG_DESCRIPTION}', product['longDescription'])
     
@@ -131,44 +129,9 @@ def update_catalog_page():
         with open('catalog.html', 'r', encoding='utf-8') as f:
             catalog_content = f.read()
         
-        # 生成产品卡片HTML
-        product_cards = []
-        for product in data['products']:
-            card_html = f'''
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="{product['images']['main']}" alt="{product['name']}" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\\'>📱 {product['name']}</div>'">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-badge">{product['badge']}</span>
-                            <h3>{product['name']}</h3>
-                            <p>{product['shortDescription']}</p>
-                            <div class="product-specs">
-                                {''.join([f'<span class="spec-item">{feature}</span>' for feature in product['features'][:4]])}
-                            </div>
-                            <div class="product-price">{product['price']}</div>
-                            <a href="product/{product['id']}" class="btn btn-primary">查看详情</a>
-                        </div>
-                    </div>'''
-            product_cards.append(card_html)
-        
-        # 更新产品网格内容 (查找products-grid)
-        grid_start = catalog_content.find('<div class="products-grid" id="products-grid">')
-        grid_end = catalog_content.find('</div>', grid_start) + len('</div>')
-        
-        if grid_start != -1 and grid_end != -1:
-            new_grid = f'<div class="products-grid" id="products-grid">{"".join(product_cards)}\n                </div>'
-            catalog_content = catalog_content[:grid_start] + new_grid + catalog_content[grid_end:]
-            
-            # 保存更新后的catalog.html
-            with open('catalog.html', 'w', encoding='utf-8') as f:
-                f.write(catalog_content)
-            print("✅ 产品目录页面更新成功")
-            return True
-        else:
-            print("⚠️  警告：无法找到产品网格区域")
-            return False
+        # 由于目录页面现在使用动态加载，这个函数不再需要更新静态HTML
+        print("✅ 目录页面使用动态加载，无需更新静态HTML")
+        return True
             
     except FileNotFoundError:
         print("错误：找不到 catalog.html 文件")
