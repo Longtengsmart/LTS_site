@@ -942,6 +942,20 @@
             return './products.json';
         }
 
+        // 获取正确的产品页面URL
+        function getProductPageUrl(productId) {
+            // 获取当前页面的路径信息
+            const currentPath = window.location.pathname;
+            
+            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
+            if (currentPath.includes('/LTS_site/')) {
+                return `/LTS_site/product/${productId}.html`;
+            }
+            
+            // 本地开发环境或自定义域名
+            return `product/${productId}.html`;
+        }
+
         // 加载和渲染首页产品
         async function loadHomepageProducts() {
             try {
@@ -969,7 +983,7 @@
                             <div class="product-specs">
                                 ${product.features.slice(0, 4).map(feature => `<span class="spec-item">${feature}</span>`).join('')}
                             </div>
-                            <a href="product/${product.id}.html" class="btn btn-primary">查看详情</a>
+                            <a href="${getProductPageUrl(product.id)}" class="btn btn-primary">查看详情</a>
                         </div>
                     </div>
                 `).join('');

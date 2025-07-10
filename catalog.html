@@ -862,6 +862,20 @@
             return './products.json';
         }
 
+        // 获取正确的产品页面URL
+        function getProductPageUrl(productId) {
+            // 获取当前页面的路径信息
+            const currentPath = window.location.pathname;
+            
+            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
+            if (currentPath.includes('/LTS_site/')) {
+                return `/LTS_site/product/${productId}.html`;
+            }
+            
+            // 本地开发环境或自定义域名
+            return `product/${productId}.html`;
+        }
+
         // 加载产品数据
         async function loadProducts() {
             try {
@@ -888,7 +902,7 @@
                     description: product.shortDescription,
                     specs: product.features ? product.features.slice(0, 4) : [], // 只取前4个特性
                     image: product.images ? product.images.main : '',
-                    link: `product/${product.id}.html`
+                    link: getProductPageUrl(product.id)
                 }));
                 
                 // 加载完成后渲染产品
