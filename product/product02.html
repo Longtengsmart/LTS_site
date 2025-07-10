@@ -574,6 +574,20 @@
             loadProductData();
         });
 
+        // 获取正确的products.json路径
+        function getProductsJsonUrl() {
+            // 获取当前页面的路径信息
+            const currentPath = window.location.pathname;
+            
+            // 如果是GitHub Pages部署（路径包含项目名），需要调整路径
+            if (currentPath.includes('/LTS_site/')) {
+                return '/LTS_site/products.json';
+            }
+            
+            // 本地开发环境或自定义域名
+            return '../products.json';
+        }
+
         async function loadProductData() {
             try {
                 // 从URL获取产品ID
@@ -581,7 +595,9 @@
                 const productId = urlPath.includes('product01') ? 'product01' : 'product02';
                 
                 // 加载产品数据
-                const response = await fetch('../products.json');
+                const productsUrl = getProductsJsonUrl();
+                console.log('尝试加载产品数据从:', productsUrl);
+                const response = await fetch(productsUrl);
                 const data = await response.json();
                 const product = data.products.find(p => p.id === productId);
                 
