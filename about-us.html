@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我们 | 隆腾智能 - 专业电子产品解决方案</title>
+    <title>关于我们 | 隆腾智能 - 专业智能汽车配件研发</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -264,11 +264,14 @@
 
         /* Hero Section */
         .hero {
-            padding: 100px 0 80px;
+            min-height: calc(100vh - 80px);
+            padding: 80px 0;
             text-align: center;
             position: relative;
             width: 100%;
-            overflow-x: hidden;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .hero::before {
@@ -277,11 +280,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: min(600px, 100vw);
+            height: min(600px, 100vh);
             background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
-            max-width: 100vw;
         }
 
         @keyframes pulse {
@@ -606,7 +608,8 @@
             }
 
             .hero {
-                padding: 80px 0 60px;
+                min-height: calc(100vh - 80px);
+                padding: 60px 0;
             }
 
             .hero h1 {
@@ -714,6 +717,117 @@
                 font-size: 1.4rem;
             }
         }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: chatPulse 3s ease-in-out infinite;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 18px;
+            height: 18px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-bg);
+            animation: notificationBlink 2s ease-in-out infinite;
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.6), 0 0 0 10px rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        @keyframes notificationBlink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        /* Chat Tooltip */
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: rgba(10, 10, 10, 0.95);
+        }
+
+        .chat-bubble:hover .chat-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile responsiveness for chat bubble */
+        @media (max-width: 768px) {
+            .chat-bubble {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chat-icon {
+                font-size: 1.3rem;
+            }
+            
+            .chat-tooltip {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+                bottom: 65px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -750,7 +864,7 @@
             <div class="container">
                 <div class="hero-content">
                     <h1>关于隆腾智能</h1>
-                    <p>专注于智能硬件研发与制造，为客户提供创新的技术解决方案</p>
+                    <p>专注于智能汽车配件研发的科技公司，致力于推动汽车行业的智能化转型</p>
                 </div>
             </div>
         </section>
@@ -760,9 +874,9 @@
                 <div class="story-grid">
                     <div class="story-content">
                         <h2>我们的故事</h2>
-                        <p>中山隆腾智能科技有限公司成立于2018年，位于中山市南朗街道南岐北路大车村大车工业园厂房6卡。公司专注于智能硬件的研发、生产和销售，致力于为客户提供高品质的电子产品解决方案。</p>
-                        <p>在总经理李俊鹏的带领下，我们的团队始终坚持技术创新和品质至上的理念。从最初的小型电子模块到如今的完整智能硬件解决方案，我们见证了物联网技术的快速发展，也在这个过程中不断成长壮大。</p>
-                        <p>经过多年的发展，隆腾智能已经建立了完善的研发体系和质量管控流程，产品广泛应用于智能家居、工业自动化、环境监测等领域，赢得了众多客户的信赖和好评。</p>
+                        <p>中山隆腾智能科技有限公司成立于2018年，位于中山市南朗街道南岐北路大车村大车工业园厂房6卡。公司专注于智能汽车配件的研发、生产和销售，致力于将创新技术与传统汽车配件相结合，推动汽车行业的智能化转型。</p>
+                        <p>在总经理李俊鹏的带领下，我们的团队始终坚持技术创新和品质至上的理念。从最初的车载显示设备到如今的完整智能汽车配件解决方案，我们见证了汽车智能化技术的快速发展，也在这个过程中不断成长壮大。</p>
+                        <p>经过多年的发展，隆腾智能已经建立了完善的汽车电子研发体系和质量管控流程，产品广泛应用于车载智能显示、档位控制系统、环境监测等领域，为汽车制造商提供个性化定制服务，赢得了众多客户的信赖和好评。</p>
                     </div>
                     <div class="story-image">
                         <div class="story-image-placeholder">🏭</div>
@@ -780,27 +894,27 @@
                 
                 <div class="values-grid">
                     <div class="value-card">
-                        <span class="value-icon">💡</span>
-                        <h3>技术创新</h3>
-                        <p>持续投入研发，追求技术突破，为客户提供最先进的智能硬件解决方案。我们相信创新是企业发展的核心动力。</p>
+                        <span class="value-icon">🚗</span>
+                        <h3>汽车智能化</h3>
+                        <p>专注于汽车智能化技术创新，将最先进的智能技术融入传统汽车配件，提升驾驶体验和行车安全性。</p>
                     </div>
                     
                     <div class="value-card">
                         <span class="value-icon">🎯</span>
-                        <h3>品质至上</h3>
-                        <p>严格的质量控制体系，确保每一件产品都符合最高标准。我们对品质的追求从不妥协。</p>
+                        <h3>安全至上</h3>
+                        <p>严格的汽车电子安全标准，确保每一件产品都符合最高安全要求。我们对安全和品质的追求从不妥协。</p>
                     </div>
                     
                     <div class="value-card">
                         <span class="value-icon">🤝</span>
-                        <h3>客户第一</h3>
-                        <p>以客户需求为导向，提供个性化的解决方案和优质的服务体验。客户的成功就是我们的成功。</p>
+                        <h3>定制服务</h3>
+                        <p>为汽车制造商提供个性化定制服务，根据不同车型和客户需求，提供专业的智能化解决方案。</p>
                     </div>
                     
                     <div class="value-card">
                         <span class="value-icon">🌱</span>
-                        <h3>持续发展</h3>
-                        <p>注重可持续发展，关注环保和社会责任，致力于创造长期价值。</p>
+                        <h3>智能未来</h3>
+                        <p>推动智能互联和自动驾驶技术的普及，致力于构建更安全、更智能的汽车出行生态。</p>
                     </div>
                 </div>
             </div>
@@ -818,21 +932,21 @@
                         <div class="team-avatar">👨‍💼</div>
                         <h3>李俊鹏</h3>
                         <div class="team-position">总经理</div>
-                        <p>拥有15年电子行业经验，深耕智能硬件领域，带领团队实现了从0到1的突破，是公司发展的核心推动者。</p>
+                        <p>拥有15年汽车电子行业经验，深耕智能汽车配件领域，带领团队专注汽车智能化技术创新，是公司发展的核心推动者。</p>
                     </div>
                     
                     <div class="team-card">
                         <div class="team-avatar">👨‍🔬</div>
-                        <h3>技术研发团队</h3>
+                        <h3>汽车电子研发团队</h3>
                         <div class="team-position">研发部</div>
-                        <p>由资深工程师组成的研发团队，在嵌入式系统、物联网通讯、传感器技术等领域拥有丰富经验。</p>
+                        <p>由资深汽车电子工程师组成的研发团队，在车载显示系统、CAN总线技术、汽车传感器等领域拥有丰富经验。</p>
                     </div>
                     
                     <div class="team-card">
                         <div class="team-avatar">👩‍🔧</div>
-                        <h3>质量管控团队</h3>
+                        <h3>汽车安全测试团队</h3>
                         <div class="team-position">质量部</div>
-                        <p>严格把控产品质量，建立完善的测试体系，确保每一件产品都能满足客户的高标准要求。</p>
+                        <p>严格按照汽车行业标准把控产品质量，建立完善的汽车电子测试体系，确保每一件产品都能满足严苛的车规级要求。</p>
                     </div>
                 </div>
             </div>
@@ -849,10 +963,16 @@
                     <a href="{{ site.baseurl }}/policy/contact">联系我们</a>
                 </div>
                 <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
-                <p>专业的智能硬件解决方案提供商</p>
+                <p>专业的智能汽车配件研发公司</p>
             </div>
         </div>
     </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openWeChatCustomerService()">
+        <div class="chat-tooltip">联系我们的客服</div>
+        <div class="chat-icon">💬</div>
+    </div>
 
     <script>
         function toggleMobileMenu() {
@@ -906,6 +1026,38 @@
                 }, { passive: false });
             }
         });
+
+        // WeChat Customer Service Function
+        function openWeChatCustomerService() {
+            // 企业微信客服链接 - 请替换为您实际的企业微信客服链接
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kf_home/kf_sendmsg?kf_id=YOUR_KF_ID&corp_id=YOUR_CORP_ID';
+            
+            // 也可以使用企业微信二维码或其他联系方式
+            // 临时使用联系页面作为fallback
+            const contactUrl = '{{ site.baseurl }}/policy/contact';
+            
+            // 尝试打开企业微信，如果失败则跳转到联系页面
+            try {
+                // 检测是否在微信环境中
+                const isWeChat = /micromessenger/i.test(navigator.userAgent);
+                const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+                
+                if (isWeChat || isMobile) {
+                    // 在微信或移动设备中，直接跳转
+                    window.location.href = contactUrl;
+                } else {
+                    // 在桌面端，尝试打开新窗口
+                    const newWindow = window.open(contactUrl, '_blank', 'width=400,height=600');
+                    if (!newWindow) {
+                        // 如果弹窗被阻止，则在当前页面打开
+                        window.location.href = contactUrl;
+                    }
+                }
+            } catch (error) {
+                // 如果出错，跳转到联系页面
+                window.location.href = contactUrl;
+            }
+        }
     </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>隆腾智能 | 专业电子产品解决方案</title>
+    <title>隆腾智能 | 专业智能汽车配件研发</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -264,11 +264,14 @@
 
         /* Hero Section */
         .hero {
-            padding: 100px 0 150px;
+            min-height: calc(100vh - 80px);
+            padding: 80px 0;
             text-align: center;
             position: relative;
             width: 100%;
-            overflow-x: hidden;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .hero::before {
@@ -277,11 +280,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
+            width: min(800px, 100vw);
+            height: min(800px, 100vh);
             background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
-            max-width: 100vw;
         }
 
         @keyframes pulse {
@@ -293,6 +295,7 @@
             position: relative;
             z-index: 2;
             width: 100%;
+            max-width: 100%;
         }
 
         .hero h1 {
@@ -585,7 +588,8 @@
             }
 
             .hero {
-                padding: 80px 0 120px;
+                min-height: calc(100vh - 80px);
+                padding: 60px 0;
             }
 
             .hero h1 {
@@ -640,7 +644,8 @@
             }
 
             .hero {
-                padding: 60px 0 100px;
+                min-height: calc(100vh - 80px);
+                padding: 40px 0;
             }
 
             .container {
@@ -674,6 +679,117 @@
             
             .section-title h2 {
                 font-size: 1.6rem;
+            }
+        }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: chatPulse 3s ease-in-out infinite;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 18px;
+            height: 18px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-bg);
+            animation: notificationBlink 2s ease-in-out infinite;
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.6), 0 0 0 10px rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        @keyframes notificationBlink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        /* Chat Tooltip */
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: rgba(10, 10, 10, 0.95);
+        }
+
+        .chat-bubble:hover .chat-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile responsiveness for chat bubble */
+        @media (max-width: 768px) {
+            .chat-bubble {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chat-icon {
+                font-size: 1.3rem;
+            }
+            
+            .chat-tooltip {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+                bottom: 65px;
             }
         }
     </style>
@@ -711,8 +827,8 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>引领<span class="highlight">智能硬件</span>新时代</h1>
-                    <p>专业的电子产品解决方案提供商，致力于为客户打造高性能、高品质的智能硬件产品</p>
+                    <h1>引领<span class="highlight">智能汽车</span>新时代</h1>
+                    <p>专注于智能汽车配件研发的科技公司，致力于将创新技术与传统汽车配件相结合，推动汽车行业的智能化转型</p>
                     <div class="cta-buttons">
                         <a href="{{ site.baseurl }}/catalog" class="btn btn-primary">探索产品</a>
                         <a href="{{ site.baseurl }}/about-us" class="btn btn-secondary">了解我们</a>
@@ -725,24 +841,24 @@
             <div class="container">
                 <div class="section-title">
                     <h2>明星产品</h2>
-                    <p>精选我们最受欢迎的智能硬件产品，每一件都代表着技术与品质的完美结合</p>
+                    <p>精选我们最受欢迎的智能汽车配件产品，每一件都代表着汽车智能化技术与品质的完美结合</p>
                 </div>
                 
                 <div class="product-grid">
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="Static/product01/overview.webp" alt="智能开发板" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>🔧 智能开发板</div>'">
+                            <img src="Static/product01/overview.webp" alt="车载智能显示器" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>🚗 车载智能显示器</div>'">
                         </div>
                         <div class="product-info">
                             <span class="product-badge">HOT</span>
-                            <h3>智能开发板 Pro</h3>
-                            <p>高性能ARM处理器，集成WiFi/蓝牙模块，支持多种传感器接口，是IoT开发的理想选择。</p>
+                            <h3>车载智能显示器 Pro</h3>
+                            <p>高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能，提升驾驶体验与行车安全。</p>
                             <div class="product-specs">
-                                <span class="spec-item">ARM Cortex-M4</span>
-                                <span class="spec-item">Wi-Fi 6</span>
-                                <span class="spec-item">蓝牙5.0</span>
-                                <span class="spec-item">32MB RAM</span>
+                                <span class="spec-item">10.25英寸高清屏</span>
+                                <span class="spec-item">触控操作</span>
+                                <span class="spec-item">CarPlay支持</span>
+                                <span class="spec-item">GPS导航</span>
                             </div>
                             <a href="{{ site.baseurl }}/product/product01" class="btn btn-primary">查看详情</a>
                         </div>
@@ -750,18 +866,18 @@
 
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="Static/product02/overview.webp" alt="传感器模块" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>📡 传感器模块</div>'">
+                            <img src="Static/product02/overview.webp" alt="智能档位显示系统" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#666;font-size:1.2rem;\'>⚙️ 智能档位显示系统</div>'">
                         </div>
                         <div class="product-info">
                             <span class="product-badge">NEW</span>
-                            <h3>多功能传感器模块</h3>
-                            <p>集成温湿度、气压、光照等多种传感器，精准数据采集，广泛应用于环境监测领域。</p>
+                            <h3>智能档位显示系统</h3>
+                            <p>智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性。</p>
                             <div class="product-specs">
-                                <span class="spec-item">6轴陀螺仪</span>
-                                <span class="spec-item">环境传感器</span>
-                                <span class="spec-item">高精度ADC</span>
-                                <span class="spec-item">I2C接口</span>
+                                <span class="spec-item">数字档位显示</span>
+                                <span class="spec-item">驾驶模式切换</span>
+                                <span class="spec-item">智能提醒</span>
+                                <span class="spec-item">CAN总线接口</span>
                             </div>
                             <a href="{{ site.baseurl }}/product/product02" class="btn btn-primary">查看详情</a>
                         </div>
@@ -781,10 +897,16 @@
                     <a href="{{ site.baseurl }}/policy/contact">联系我们</a>
                 </div>
                 <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
-                <p>专业的智能硬件解决方案提供商</p>
+                <p>专业的智能汽车配件研发公司</p>
             </div>
         </div>
     </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openWeChatCustomerService()">
+        <div class="chat-tooltip">联系我们的客服</div>
+        <div class="chat-icon">💬</div>
+    </div>
 
     <script>
         function toggleMobileMenu() {
@@ -838,6 +960,38 @@
                 }, { passive: false });
             }
         });
+
+        // WeChat Customer Service Function
+        function openWeChatCustomerService() {
+            // 企业微信客服链接 - 请替换为您实际的企业微信客服链接
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kf_home/kf_sendmsg?kf_id=YOUR_KF_ID&corp_id=YOUR_CORP_ID';
+            
+            // 也可以使用企业微信二维码或其他联系方式
+            // 临时使用联系页面作为fallback
+            const contactUrl = '{{ site.baseurl }}/policy/contact';
+            
+            // 尝试打开企业微信，如果失败则跳转到联系页面
+            try {
+                // 检测是否在微信环境中
+                const isWeChat = /micromessenger/i.test(navigator.userAgent);
+                const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+                
+                if (isWeChat || isMobile) {
+                    // 在微信或移动设备中，直接跳转
+                    window.location.href = contactUrl;
+                } else {
+                    // 在桌面端，尝试打开新窗口
+                    const newWindow = window.open(contactUrl, '_blank', 'width=400,height=600');
+                    if (!newWindow) {
+                        // 如果弹窗被阻止，则在当前页面打开
+                        window.location.href = contactUrl;
+                    }
+                }
+            } catch (error) {
+                // 如果出错，跳转到联系页面
+                window.location.href = contactUrl;
+            }
+        }
     </script>
 </body>
 </html>
