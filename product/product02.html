@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>多功能传感器模块 | 隆腾智能 - 专业电子产品解决方案</title>
+    <title>智能档位显示系统 | 隆腾智能 - 专业智能汽车配件研发</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -264,10 +264,13 @@
 
         /* Product Hero Section */
         .product-hero {
-            padding: 100px 0 80px;
+            min-height: calc(100vh - 80px);
+            padding: 80px 0;
             position: relative;
             width: 100%;
-            overflow-x: hidden;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .product-hero::before {
@@ -276,11 +279,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: min(600px, 100vw);
+            height: min(600px, 100vh);
             background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
-            max-width: 100vw;
         }
 
         @keyframes pulse {
@@ -709,7 +711,8 @@
             }
 
             .product-hero {
-                padding: 80px 0 60px;
+                min-height: calc(100vh - 80px);
+                padding: 60px 0;
             }
 
             .product-overview {
@@ -825,6 +828,117 @@
                 font-size: 1.4rem;
             }
         }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: chatPulse 3s ease-in-out infinite;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 18px;
+            height: 18px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-bg);
+            animation: notificationBlink 2s ease-in-out infinite;
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.6), 0 0 0 10px rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        @keyframes notificationBlink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        /* Chat Tooltip */
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: rgba(10, 10, 10, 0.95);
+        }
+
+        .chat-bubble:hover .chat-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile responsiveness for chat bubble */
+        @media (max-width: 768px) {
+            .chat-bubble {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chat-icon {
+                font-size: 1.3rem;
+            }
+            
+            .chat-tooltip {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+                bottom: 65px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -862,26 +976,26 @@
                 <div class="product-overview">
                     <div class="product-info">
                         <span class="product-badge">NEW</span>
-                        <h1>多功能传感器模块</h1>
-                        <p class="product-description">集成温湿度、气压、光照、6轴陀螺仪等多种传感器，提供高精度的环境数据采集和运动检测功能，是物联网项目的理想选择。</p>
+                        <h1>智能档位显示系统</h1>
+                        <p class="product-description">智能识别车辆档位状态，实时显示驾驶模式信息，集成驾驶辅助功能，提升驾驶安全性，为现代汽车提供精确的档位控制体验。</p>
                         
                         <div class="key-features">
                             <h3>主要特性</h3>
                             <ul class="features-list">
-                                <li>集成多种环境传感器</li>
-                                <li>6轴陀螺仪与加速度计</li>
-                                <li>高精度ADC数据采集</li>
-                                <li>I2C/SPI双接口支持</li>
-                                <li>低功耗设计，适合电池供电</li>
-                                <li>小体积，易于集成</li>
+                                <li>数字档位显示界面</li>
+                                <li>多种驾驶模式切换</li>
+                                <li>智能提醒与警报功能</li>
+                                <li>CAN总线通信接口</li>
+                                <li>车规级安全设计</li>
+                                <li>兼容多种车型</li>
                             </ul>
                         </div>
                     </div>
                     
                     <div class="product-image">
                         <div class="main-image">
-                            <img src="../Static/product02/overview.webp" alt="多功能传感器模块" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-placeholder\'>📡</div>'">
+                            <img src="../Static/product02/overview.webp" alt="智能档位显示系统" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'image-placeholder\'>⚙️</div>'">
                         </div>
                     </div>
                 </div>
@@ -892,27 +1006,27 @@
             <div class="container">
                 <div class="details-grid">
                     <div class="detail-card">
-                        <h3>传感器规格</h3>
+                        <h3>显示功能</h3>
                         <div class="spec-grid">
                             <div class="spec-item">
-                                <span class="spec-label">温度范围</span>
-                                <span class="spec-value">-40°C ~ +85°C</span>
+                                <span class="spec-label">档位显示</span>
+                                <span class="spec-value">P/R/N/D/S/M模式</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">湿度范围</span>
-                                <span class="spec-value">0% ~ 100% RH</span>
+                                <span class="spec-label">驾驶模式</span>
+                                <span class="spec-value">经济/舒适/运动/自定义</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">气压范围</span>
-                                <span class="spec-value">300-1100 hPa</span>
+                                <span class="spec-label">显示精度</span>
+                                <span class="spec-value">实时响应 <10ms</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">陀螺仪范围</span>
-                                <span class="spec-value">±250/500/1000/2000 dps</span>
+                                <span class="spec-label">警报功能</span>
+                                <span class="spec-value">声音+视觉双重提醒</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">加速度计</span>
-                                <span class="spec-value">±2/4/8/16 g</span>
+                                <span class="spec-label">亮度调节</span>
+                                <span class="spec-value">自动/手动调节</span>
                             </div>
                         </div>
                     </div>
@@ -922,23 +1036,23 @@
                         <div class="spec-grid">
                             <div class="spec-item">
                                 <span class="spec-label">工作电压</span>
-                                <span class="spec-value">2.7V ~ 3.6V</span>
+                                <span class="spec-value">12V/24V车载电源</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">工作电流</span>
-                                <span class="spec-value">0.8mA (典型值)</span>
+                                <span class="spec-value">150mA (典型值)</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">休眠电流</span>
-                                <span class="spec-value">< 1μA</span>
+                                <span class="spec-label">待机电流</span>
+                                <span class="spec-value">< 5mA</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">接口类型</span>
-                                <span class="spec-value">I2C / SPI</span>
+                                <span class="spec-value">CAN-FD 2.0 / LIN</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">时钟频率</span>
-                                <span class="spec-value">最高 1MHz (I2C)</span>
+                                <span class="spec-label">通信速率</span>
+                                <span class="spec-value">最高 5Mbps (CAN-FD)</span>
                             </div>
                         </div>
                     </div>
@@ -948,23 +1062,23 @@
                         <div class="spec-grid">
                             <div class="spec-item">
                                 <span class="spec-label">尺寸</span>
-                                <span class="spec-value">25mm × 15mm</span>
+                                <span class="spec-value">85mm × 45mm</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">厚度</span>
-                                <span class="spec-value">2.5mm</span>
+                                <span class="spec-value">12mm</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">重量</span>
-                                <span class="spec-value">2.8g</span>
+                                <span class="spec-value">120g</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">工作温度</span>
-                                <span class="spec-value">-40°C ~ +85°C</span>
+                                <span class="spec-value">-30°C ~ +85°C</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">存储温度</span>
-                                <span class="spec-value">-55°C ~ +125°C</span>
+                                <span class="spec-label">防护等级</span>
+                                <span class="spec-value">IP67</span>
                             </div>
                         </div>
                     </div>
@@ -976,32 +1090,32 @@
             <div class="container">
                 <div class="section-title">
                     <h2>应用场景</h2>
-                    <p>广泛适用于各种需要环境监测和运动检测的应用场景</p>
+                    <p>广泛适用于各种需要精确档位控制和驾驶模式管理的车辆类型</p>
                 </div>
                 
                 <div class="applications-grid">
                     <div class="app-card">
-                        <span class="app-icon">🏠</span>
-                        <h3>智能家居</h3>
-                        <p>室内环境监测，空调自动调节，窗帘智能控制，为家庭提供舒适的居住环境。</p>
+                        <span class="app-icon">🚗</span>
+                        <h3>乘用车辆</h3>
+                        <p>轿车、SUV等乘用车型，提供精确的档位显示和驾驶模式切换功能，提升驾驶体验。</p>
                     </div>
                     
                     <div class="app-card">
-                        <span class="app-icon">🌡️</span>
-                        <h3>环境监测</h3>
-                        <p>气象站数据采集，农业大棚监控，空气质量检测，提供准确的环境数据。</p>
+                        <span class="app-icon">🚐</span>
+                        <h3>商用车辆</h3>
+                        <p>货车、客车等商用车型，提供可靠的档位信息显示，确保安全高效的商业运输。</p>
                     </div>
                     
                     <div class="app-card">
-                        <span class="app-icon">🏃‍♂️</span>
-                        <h3>运动追踪</h3>
-                        <p>可穿戴设备，运动监测，姿态检测，为健康管理提供精确的运动数据。</p>
+                        <span class="app-icon">🏎️</span>
+                        <h3>高性能车型</h3>
+                        <p>跑车、改装车等高性能车型，支持多种驾驶模式，满足不同驾驶需求。</p>
                     </div>
                     
                     <div class="app-card">
-                        <span class="app-icon">🏭</span>
-                        <h3>工业应用</h3>
-                        <p>设备状态监控，振动分析，温度报警，保障工业设备的安全运行。</p>
+                        <span class="app-icon">⚡</span>
+                        <h3>新能源车型</h3>
+                        <p>电动车、混动车等新能源车型，集成能量回收模式显示，优化能耗管理。</p>
                     </div>
                 </div>
             </div>
@@ -1029,10 +1143,16 @@
                     <a href="{{ site.baseurl }}/policy/contact">联系我们</a>
                 </div>
                 <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
-                <p>专业的智能硬件解决方案提供商</p>
+                <p>专业的智能汽车配件研发公司</p>
             </div>
         </div>
     </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openWeChatCustomerService()">
+        <div class="chat-tooltip">联系我们的客服</div>
+        <div class="chat-icon">💬</div>
+    </div>
 
     <script>
         function toggleMobileMenu() {
@@ -1086,6 +1206,38 @@
                 }, { passive: false });
             }
         });
+
+        // WeChat Customer Service Function
+        function openWeChatCustomerService() {
+            // 企业微信客服链接 - 请替换为您实际的企业微信客服链接
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kf_home/kf_sendmsg?kf_id=YOUR_KF_ID&corp_id=YOUR_CORP_ID';
+            
+            // 也可以使用企业微信二维码或其他联系方式
+            // 临时使用联系页面作为fallback
+            const contactUrl = '{{ site.baseurl }}/policy/contact';
+            
+            // 尝试打开企业微信，如果失败则跳转到联系页面
+            try {
+                // 检测是否在微信环境中
+                const isWeChat = /micromessenger/i.test(navigator.userAgent);
+                const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+                
+                if (isWeChat || isMobile) {
+                    // 在微信或移动设备中，直接跳转
+                    window.location.href = contactUrl;
+                } else {
+                    // 在桌面端，尝试打开新窗口
+                    const newWindow = window.open(contactUrl, '_blank', 'width=400,height=600');
+                    if (!newWindow) {
+                        // 如果弹窗被阻止，则在当前页面打开
+                        window.location.href = contactUrl;
+                    }
+                }
+            } catch (error) {
+                // 如果出错，跳转到联系页面
+                window.location.href = contactUrl;
+            }
+        }
     </script>
 </body>
 </html> 

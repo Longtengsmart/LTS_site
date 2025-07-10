@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能开发板 Pro | 隆腾智能 - 专业电子产品解决方案</title>
+    <title>车载智能显示器 Pro | 隆腾智能 - 专业智能汽车配件研发</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -280,10 +280,13 @@
 
         /* Product Hero Section */
         .product-hero {
-            padding: 100px 0 80px;
+            min-height: calc(100vh - 80px);
+            padding: 80px 0;
             position: relative;
             width: 100%;
-            overflow-x: hidden;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .product-hero::before {
@@ -292,11 +295,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: min(600px, 100vw);
+            height: min(600px, 100vh);
             background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
-            max-width: 100vw;
         }
 
         @keyframes pulse {
@@ -725,7 +727,8 @@
             }
 
             .product-hero {
-                padding: 80px 0 60px;
+                min-height: calc(100vh - 80px);
+                padding: 60px 0;
             }
 
             .product-overview {
@@ -841,6 +844,117 @@
                 font-size: 1.4rem;
             }
         }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: chatPulse 3s ease-in-out infinite;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 18px;
+            height: 18px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-bg);
+            animation: notificationBlink 2s ease-in-out infinite;
+        }
+
+        .chat-icon {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 8px 32px rgba(0, 212, 255, 0.6), 0 0 0 10px rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        @keyframes notificationBlink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        /* Chat Tooltip */
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: rgba(10, 10, 10, 0.95);
+        }
+
+        .chat-bubble:hover .chat-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile responsiveness for chat bubble */
+        @media (max-width: 768px) {
+            .chat-bubble {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chat-icon {
+                font-size: 1.3rem;
+            }
+            
+            .chat-tooltip {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+                bottom: 65px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -875,29 +989,29 @@
     <main>
         <div class="container">
             <div class="breadcrumb">
-                <a href="{{ site.baseurl }}/">首页</a> / <a href="{{ site.baseurl }}/catalog">产品目录</a> / 智能开发板 Pro
+                <a href="{{ site.baseurl }}/">首页</a> / <a href="{{ site.baseurl }}/catalog">产品目录</a> / 车载智能显示器 Pro
             </div>
 
             <div class="product-hero">
                 <div class="product-image-section">
                     <div class="product-main-image">
-                        🔧
+                        🚗
                     </div>
                     <div class="product-thumbnails">
-                        <div class="thumbnail active">🔧</div>
+                        <div class="thumbnail active">🚗</div>
                         <div class="thumbnail">📱</div>
-                        <div class="thumbnail">🔌</div>
+                        <div class="thumbnail">🖥️</div>
                         <div class="thumbnail">📋</div>
                     </div>
                 </div>
 
                 <div class="product-info">
                     <span class="product-badge">热销产品</span>
-                    <h1 class="product-title">智能开发板 Pro</h1>
-                    <div class="product-price">¥299.00</div>
+                    <h1 class="product-title">车载智能显示器 Pro</h1>
+                    <div class="product-price">¥1299.00</div>
                     <p class="product-description">
-                        采用高性能ARM Cortex-M4处理器，集成WiFi 6和蓝牙5.0双模块，支持多种传感器接口。
-                        专为IoT开发者设计，提供完整的开发生态和丰富的示例代码，是物联网项目开发的理想选择。
+                        采用10.25英寸高清触控显示屏，集成车载导航、娱乐系统、车辆信息显示功能。
+                        专为汽车制造商设计，支持CarPlay/Android Auto，提供完整的车载智能化解决方案，提升驾驶体验与行车安全。
                     </p>
 
                     <div class="product-features">
@@ -905,27 +1019,27 @@
                         <div class="features-list">
                             <div class="feature-item">
                                 <span class="feature-icon">✓</span>
-                                <span>ARM Cortex-M4 168MHz</span>
+                                <span>10.25英寸高清触控屏</span>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">✓</span>
-                                <span>Wi-Fi 6 + 蓝牙5.0</span>
+                                <span>CarPlay/Android Auto</span>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">✓</span>
-                                <span>32MB RAM + 128MB Flash</span>
+                                <span>GPS导航 + 实时路况</span>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">✓</span>
-                                <span>20个GPIO接口</span>
+                                <span>车辆信息显示</span>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">✓</span>
-                                <span>多种通信接口</span>
+                                <span>多媒体娱乐系统</span>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">✓</span>
-                                <span>完整开发生态</span>
+                                <span>CAN总线接口</span>
                             </div>
                         </div>
                     </div>
@@ -942,82 +1056,82 @@
                 <h2 class="section-title">技术规格</h2>
                 <div class="specs-grid">
                     <div class="spec-category">
-                        <h3>处理器 & 内存</h3>
+                        <h3>显示屏参数</h3>
                         <div class="spec-item">
-                            <span class="spec-label">处理器</span>
-                            <span class="spec-value">ARM Cortex-M4</span>
+                            <span class="spec-label">屏幕尺寸</span>
+                            <span class="spec-value">10.25英寸</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">主频</span>
-                            <span class="spec-value">168 MHz</span>
+                            <span class="spec-label">分辨率</span>
+                            <span class="spec-value">1920×720像素</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">触控技术</span>
+                            <span class="spec-value">电容式多点触控</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">亮度</span>
+                            <span class="spec-value">1000cd/m²</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-category">
+                        <h3>系统配置</h3>
+                        <div class="spec-item">
+                            <span class="spec-label">处理器</span>
+                            <span class="spec-value">四核ARM Cortex-A53</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">内存</span>
-                            <span class="spec-value">32 MB RAM</span>
+                            <span class="spec-value">4GB RAM</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">存储</span>
-                            <span class="spec-value">128 MB Flash</span>
+                            <span class="spec-value">64GB eMMC</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">操作系统</span>
+                            <span class="spec-value">Android 11车载版</span>
                         </div>
                     </div>
 
                     <div class="spec-category">
-                        <h3>无线连接</h3>
+                        <h3>连接接口</h3>
                         <div class="spec-item">
-                            <span class="spec-label">Wi-Fi</span>
-                            <span class="spec-value">802.11ax (Wi-Fi 6)</span>
+                            <span class="spec-label">CAN总线</span>
+                            <span class="spec-value">CAN-FD 2.0</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">蓝牙</span>
-                            <span class="spec-value">Bluetooth 5.0</span>
+                            <span class="spec-label">USB接口</span>
+                            <span class="spec-value">2×USB-A，1×USB-C</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">天线</span>
-                            <span class="spec-value">集成PCB天线</span>
+                            <span class="spec-label">音频接口</span>
+                            <span class="spec-value">Line Out，Mic In</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">传输距离</span>
-                            <span class="spec-value">室内50m，室外150m</span>
-                        </div>
-                    </div>
-
-                    <div class="spec-category">
-                        <h3>接口 & 外设</h3>
-                        <div class="spec-item">
-                            <span class="spec-label">GPIO</span>
-                            <span class="spec-value">20个数字IO</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">ADC</span>
-                            <span class="spec-value">8个12位ADC</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">UART</span>
-                            <span class="spec-value">3个硬件UART</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">I2C/SPI</span>
-                            <span class="spec-value">2个I2C，2个SPI</span>
+                            <span class="spec-label">无线连接</span>
+                            <span class="spec-value">Wi-Fi 6，蓝牙5.2</span>
                         </div>
                     </div>
 
                     <div class="spec-category">
-                        <h3>电源 & 物理</h3>
+                        <h3>物理参数</h3>
                         <div class="spec-item">
                             <span class="spec-label">供电电压</span>
-                            <span class="spec-value">3.3V / 5V</span>
+                            <span class="spec-value">12V/24V车载电源</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">功耗</span>
-                            <span class="spec-value">运行≤200mA，休眠≤10μA</span>
+                            <span class="spec-value">运行≤15W，待机≤2W</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">尺寸</span>
-                            <span class="spec-value">65mm × 25mm</span>
+                            <span class="spec-value">248×68×15mm</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">工作温度</span>
-                            <span class="spec-value">-40°C ~ 85°C</span>
+                            <span class="spec-value">-30°C ~ 85°C</span>
                         </div>
                     </div>
                 </div>
@@ -1028,34 +1142,34 @@
                 <h2 class="section-title">应用场景</h2>
                 <div class="applications-grid">
                     <div class="application-card">
-                        <div class="application-icon">🏠</div>
-                        <h3>智能家居</h3>
-                        <p>智能开关、温控器、安防系统等家居设备的核心控制单元</p>
-                    </div>
-                    <div class="application-card">
-                        <div class="application-icon">🏭</div>
-                        <h3>工业物联网</h3>
-                        <p>设备监控、数据采集、远程控制等工业4.0应用</p>
-                    </div>
-                    <div class="application-card">
-                        <div class="application-icon">🌱</div>
-                        <h3>环境监测</h3>
-                        <p>空气质量监测、气象站、土壤监测等环境感知应用</p>
+                        <div class="application-icon">🚙</div>
+                        <h3>SUV车型</h3>
+                        <p>适配各类SUV车型，提供大屏导航和娱乐系统，提升驾乘体验</p>
                     </div>
                     <div class="application-card">
                         <div class="application-icon">🚗</div>
-                        <h3>车联网</h3>
-                        <p>车载终端、OBD设备、车队管理等智能交通应用</p>
+                        <h3>轿车车型</h3>
+                        <p>集成到轿车中控台，提供智能化的车辆信息显示和控制功能</p>
                     </div>
                     <div class="application-card">
-                        <div class="application-icon">🏥</div>
-                        <h3>智慧医疗</h3>
-                        <p>便携式医疗设备、健康监测、远程医疗等应用</p>
+                        <div class="application-icon">🚐</div>
+                        <h3>商用车辆</h3>
+                        <p>为货车、客车等商用车辆提供专业的导航和车队管理功能</p>
                     </div>
                     <div class="application-card">
-                        <div class="application-icon">🎓</div>
-                        <h3>教育科研</h3>
-                        <p>物联网教学、原型开发、科研项目等教育应用</p>
+                        <div class="application-icon">🚕</div>
+                        <h3>出租车/网约车</h3>
+                        <p>专为运营车辆设计，集成计价器、接单系统等专业功能</p>
+                    </div>
+                    <div class="application-card">
+                        <div class="application-icon">🏎️</div>
+                        <h3>改装车型</h3>
+                        <p>支持个性化定制，满足改装车主对高端车载显示系统的需求</p>
+                    </div>
+                    <div class="application-card">
+                        <div class="application-icon">🔧</div>
+                        <h3>OEM定制</h3>
+                        <p>为汽车制造商提供OEM定制服务，深度集成车辆原厂系统</p>
                     </div>
                 </div>
             </section>
@@ -1072,10 +1186,16 @@
                     <a href="{{ site.baseurl }}/policy/contact">联系我们</a>
                 </div>
                 <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
-                <p>专业的智能硬件解决方案提供商</p>
+                <p>专业的智能汽车配件研发公司</p>
             </div>
         </div>
     </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openWeChatCustomerService()">
+        <div class="chat-tooltip">联系我们的客服</div>
+        <div class="chat-icon">💬</div>
+    </div>
 
     <script>
         function toggleMobileMenu() {
@@ -1129,6 +1249,38 @@
                 }, { passive: false });
             }
         });
+
+        // WeChat Customer Service Function
+        function openWeChatCustomerService() {
+            // 企业微信客服链接 - 请替换为您实际的企业微信客服链接
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kf_home/kf_sendmsg?kf_id=YOUR_KF_ID&corp_id=YOUR_CORP_ID';
+            
+            // 也可以使用企业微信二维码或其他联系方式
+            // 临时使用联系页面作为fallback
+            const contactUrl = '{{ site.baseurl }}/policy/contact';
+            
+            // 尝试打开企业微信，如果失败则跳转到联系页面
+            try {
+                // 检测是否在微信环境中
+                const isWeChat = /micromessenger/i.test(navigator.userAgent);
+                const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+                
+                if (isWeChat || isMobile) {
+                    // 在微信或移动设备中，直接跳转
+                    window.location.href = contactUrl;
+                } else {
+                    // 在桌面端，尝试打开新窗口
+                    const newWindow = window.open(contactUrl, '_blank', 'width=400,height=600');
+                    if (!newWindow) {
+                        // 如果弹窗被阻止，则在当前页面打开
+                        window.location.href = contactUrl;
+                    }
+                }
+            } catch (error) {
+                // 如果出错，跳转到联系页面
+                window.location.href = contactUrl;
+            }
+        }
     </script>
 </body>
 </html> 
