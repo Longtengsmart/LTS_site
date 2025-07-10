@@ -850,14 +850,16 @@
 
         // 获取正确的products.json路径
         function getProductsJsonUrl() {
-            // 简化路径处理：所有环境都使用相对路径
-            return './products.json';
+            // 修复Jekyll pretty URL导致的路径问题
+            // catalog页面在/catalog/路径下，需要回到根目录
+            return '../products.json';
         }
 
         // 获取正确的产品页面URL
         function getProductPageUrl(productId) {
-            // catalog页面在根目录，使用相对路径更可靠
-            return `product/${productId}.html`;
+            // 修复Jekyll pretty URL导致的路径问题
+            // catalog页面在/catalog/路径下，需要回到根目录再进入product/
+            return `../product/${productId}.html`;
         }
 
         // 加载产品数据
@@ -964,19 +966,19 @@
             loadProducts();
         }
 
-        // 智能导航函数 - 兼容本地HTTP服务器和GitHub Pages
+        // 智能导航函数 - 兼容Jekyll pretty URL和GitHub Pages
         function navigateToPage(pagePath) {
             let targetUrl;
             
             if (pagePath === '') {
-                // 首页
-                targetUrl = './';
+                // 首页 - catalog页面在/catalog/下，需要回到根目录
+                targetUrl = '../';
             } else if (pagePath === 'catalog') {
                 // 当前catalog页面，不进行跳转
                 return;
             } else {
-                // 其他页面
-                targetUrl = `./${pagePath}`;
+                // 其他页面 - catalog页面在/catalog/下，需要回到根目录再跳转
+                targetUrl = `../${pagePath}`;
             }
             
             // 导航到目标页面
@@ -988,8 +990,8 @@
             // 企业微信客服链接
             const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
             
-            // 备用联系方式
-            const contactUrl = './policy/contact';
+            // 备用联系方式  
+            const contactUrl = '../policy/contact';
             
             // 尝试打开企业微信客服
             try {
