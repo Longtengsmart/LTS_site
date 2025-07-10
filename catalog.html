@@ -856,18 +856,8 @@
 
         // 获取正确的产品页面URL
         function getProductPageUrl(productId) {
-            // 获取当前页面的完整URL信息
-            const currentURL = window.location;
-            const currentOrigin = currentURL.origin;
-            
-            // 本地开发环境
-            if (currentOrigin.includes('localhost') || currentOrigin.includes('127.0.0.1')) {
-                // 本地环境使用绝对路径（从根目录开始）
-                return `/product/${productId}.html`;
-            }
-            
-            // GitHub Pages或其他生产环境，使用绝对路径
-            return `/product/${productId}.html`;
+            // catalog页面在根目录，使用相对路径更可靠
+            return `product/${productId}.html`;
         }
 
         // 加载产品数据
