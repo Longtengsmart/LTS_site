@@ -544,20 +544,16 @@
     </div>
 
     <script>
-        // 智能导航函数
+        // 智能导航函数 - 适配Jekyll pretty permalinks
         function navigateToPage(pagePath) {
-            // 获取当前页面的路径信息
-            const currentURL = window.location;
-            const currentOrigin = currentURL.origin;
-            
             let targetUrl;
             
             if (pagePath === '') {
                 // 首页
-                targetUrl = `${currentOrigin}/`;
+                targetUrl = '../';
             } else {
-                // 其他页面
-                targetUrl = `${currentOrigin}/${pagePath}.html`;
+                // 其他页面 - 使用相对路径，无.html后缀
+                targetUrl = `../${pagePath}`;
             }
             
             // 导航到目标页面
