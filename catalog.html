@@ -941,28 +941,30 @@
 
         // WeChat Customer Service Function
         function openWeChatCustomerService() {
-            // 企业微信客服链接 - 请替换为您实际的企业微信客服链接
-            const wechatServiceUrl = 'https://work.weixin.qq.com/kf_home/kf_sendmsg?kf_id=YOUR_KF_ID&corp_id=YOUR_CORP_ID';
+            // 企业微信客服链接
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
             
-            // 也可以使用企业微信二维码或其他联系方式
-            // 临时使用联系页面作为fallback
+            // 备用联系方式
             const contactUrl = '{{ site.baseurl }}/policy/contact';
             
-            // 尝试打开企业微信，如果失败则跳转到联系页面
+            // 尝试打开企业微信客服
             try {
                 // 检测是否在微信环境中
                 const isWeChat = /micromessenger/i.test(navigator.userAgent);
                 const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
                 
-                if (isWeChat || isMobile) {
-                    // 在微信或移动设备中，直接跳转
-                    window.location.href = contactUrl;
+                if (isWeChat) {
+                    // 在微信中，直接跳转到企业微信客服
+                    window.location.href = wechatServiceUrl;
+                } else if (isMobile) {
+                    // 在移动设备中，尝试打开企业微信客服
+                    window.location.href = wechatServiceUrl;
                 } else {
                     // 在桌面端，尝试打开新窗口
-                    const newWindow = window.open(contactUrl, '_blank', 'width=400,height=600');
+                    const newWindow = window.open(wechatServiceUrl, '_blank', 'width=400,height=600');
                     if (!newWindow) {
                         // 如果弹窗被阻止，则在当前页面打开
-                        window.location.href = contactUrl;
+                        window.location.href = wechatServiceUrl;
                     }
                 }
             } catch (error) {
