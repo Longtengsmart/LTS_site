@@ -453,7 +453,24 @@
                 <li><a href="{{ site.baseurl }}/catalog">产品目录</a></li>
                 <li><a href="{{ site.baseurl }}/about-us">关于我们</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="打开菜单">☰</button>
         </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+        
+        <!-- Mobile Menu Drawer -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <span class="logo">隆腾智能</span>
+                <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="关闭菜单">✕</button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="{{ site.baseurl }}/" onclick="closeMobileMenu()">首页</a></li>
+                <li><a href="{{ site.baseurl }}/catalog" onclick="closeMobileMenu()">产品目录</a></li>
+                <li><a href="{{ site.baseurl }}/about-us" onclick="closeMobileMenu()">关于我们</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
@@ -579,5 +596,59 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-menu');
+            
+            if (overlay && menu) {
+                const isActive = overlay.classList.contains('active');
+                
+                if (isActive) {
+                    closeMobileMenu();
+                } else {
+                    overlay.classList.add('active');
+                    menu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        }
+
+        function closeMobileMenu() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const menu = document.querySelector('.mobile-menu');
+            
+            if (overlay && menu) {
+                overlay.classList.remove('active');
+                menu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close menu when clicking outside or pressing escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // Ensure menu closes on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent body scroll when menu is open
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            if (overlay) {
+                overlay.addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                }, { passive: false });
+            }
+        });
+    </script>
 </body>
 </html> 

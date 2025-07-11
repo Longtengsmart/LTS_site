@@ -1211,5 +1211,62 @@
             }
         });
     </script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="../../policy/privacy">隐私政策</a>
+                    <a href="../../policy/terms-and-service">服务条款</a>
+                    <a href="../../policy/support">技术支持</a>
+                    <a href="../../policy/contact">联系我们</a>
+                </div>
+                <p>&copy; 2024 中山隆腾智能科技有限公司. 保留所有权利。</p>
+                <p>专业的智能汽车配件研发公司</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble" onclick="openWeChatCustomerService()">
+        <div class="chat-tooltip">联系我们的客服</div>
+        <div class="chat-icon">💬</div>
+    </div>
+
+    <script>
+        // WeChat Customer Service Function
+        function openWeChatCustomerService() {
+            // 企业微信客服链接
+            const wechatServiceUrl = 'https://work.weixin.qq.com/kfid/kfcc5b553b938ed5d29';
+            
+            // 备用联系方式
+            const contactUrl = '../../policy/contact';
+            
+            // 尝试打开企业微信客服
+            try {
+                // 检测是否在微信环境中
+                const isWeChat = /micromessenger/i.test(navigator.userAgent);
+                const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent);
+                
+                if (isWeChat) {
+                    // 在微信中，直接跳转到企业微信客服
+                    window.location.href = wechatServiceUrl;
+                } else if (isMobile) {
+                    // 在移动设备中，尝试打开企业微信客服
+                    window.location.href = wechatServiceUrl;
+                } else {
+                    // 在桌面端，尝试打开新窗口
+                    const newWindow = window.open(wechatServiceUrl, '_blank', 'width=400,height=600');
+                    if (!newWindow) {
+                        // 如果弹窗被阻止，则在当前页面打开
+                        window.location.href = wechatServiceUrl;
+                    }
+                }
+            } catch (error) {
+                // 如果出错，跳转到联系页面
+                window.location.href = contactUrl;
+            }
+        }
+    </script>
 </body>
 </html> 
