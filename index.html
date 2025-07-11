@@ -639,99 +639,36 @@
             z-index: 2;
         }
 
-        /* Tech Features Section */
-        .tech-features {
+
+
+        /* Partners Section */
+        .partners {
             padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .features-grid {
+        .partners-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-2);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
-            border-radius: 20px;
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.05;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 212, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Service Commitment Section */
-        .service-commitment {
-            padding: 100px 0;
-        }
-
-        .commitment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
 
-        .commitment-card {
+        .partner-card {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 2.5rem 2rem;
+            padding: 2rem;
             text-align: center;
             transition: all 0.4s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .commitment-card::before {
+        .partner-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -745,74 +682,112 @@
             border-radius: 20px;
         }
 
-        .commitment-card:hover::before {
+        .partner-card:hover::before {
             opacity: 0.05;
         }
 
-        .commitment-card:hover {
+        .partner-card:hover {
             transform: translateY(-8px);
             border-color: rgba(0, 212, 255, 0.3);
             box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
         }
 
-        .commitment-icon {
-            font-size: 3rem;
+        .partner-logo {
+            width: 120px;
+            height: 120px;
             margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             z-index: 2;
         }
 
-        .commitment-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            position: relative;
-            z-index: 2;
+        .partner-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        .commitment-card p {
+        .partner-card:hover .partner-logo img {
+            transform: scale(1.05);
+        }
+
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-secondary);
-            line-height: 1.6;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+        }
+
+        .partner-info {
+            text-align: center;
             position: relative;
             z-index: 2;
+        }
+
+        .partner-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .partner-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
         }
 
         /* Responsive Design for New Sections */
         @media (max-width: 768px) {
             .advantages-grid,
-            .commitment-grid,
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
             }
 
-            .feature-card,
             .advantage-item,
-            .commitment-card {
+            .partner-card {
                 padding: 2rem 1.5rem;
             }
 
             .company-advantages,
-            .tech-features,
-            .service-commitment {
+            .partners {
                 padding: 50px 0;
+            }
+
+            .partner-logo {
+                width: 100px;
+                height: 100px;
             }
         }
 
         @media (max-width: 480px) {
             .advantages-grid,
-            .commitment-grid {
+            .partners-grid {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
             .advantage-item,
-            .commitment-card {
+            .partner-card {
                 padding: 2rem 1rem;
             }
 
             .company-advantages,
-            .tech-features,
-            .service-commitment {
+            .partners {
                 padding: 40px 0;
             }
 
@@ -831,8 +806,17 @@
                 font-size: 1.2rem;
             }
 
-            .commitment-icon {
-                font-size: 2.5rem;
+            .partner-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .partner-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .partner-info p {
+                font-size: 0.8rem;
             }
         }
         
@@ -1216,75 +1200,81 @@
             </div>
         </section>
 
-        <!-- 技术特色 -->
-        <section class="tech-features">
-            <div class="container">
-                <div class="section-title">
-                    <h2>技术特色</h2>
-                    <p>融合前沿科技与汽车工艺，打造智能化的汽车配件解决方案</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🤖</div>
-                        <h3>AI智能算法</h3>
-                        <p>集成先进的人工智能算法，实现智能识别、自动调节等功能，提升驾驶体验。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📡</div>
-                        <h3>物联网连接</h3>
-                        <p>支持5G/4G网络连接，实现车辆与云端的实时数据交换和远程控制功能。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>安全防护</h3>
-                        <p>采用多重安全防护机制，确保数据安全和系统稳定，保障用户隐私。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>高效节能</h3>
-                        <p>优化电路设计和算法效率，实现低功耗运行，延长设备使用寿命。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- 服务承诺 -->
-        <section class="service-commitment">
+
+        <!-- 合作伙伴 -->
+        <section class="partners">
             <div class="container">
                 <div class="section-title">
-                    <h2>我们的服务承诺</h2>
-                    <p>客户满意是我们的首要目标，为您提供全方位的服务保障</p>
+                    <h2>合作伙伴</h2>
+                    <p>携手行业领先企业，共创智能汽车配件生态</p>
                 </div>
-                <div class="commitment-grid">
-                    <div class="commitment-card">
-                        <div class="commitment-icon">📞</div>
-                        <h3>24小时在线</h3>
-                        <p>全天候客服支持<br/>随时为您解答疑问</p>
+                <div class="partners-grid">
+                    <!-- 合作伙伴模板 - 复制这个结构来添加新伙伴 -->
+                    <div class="partner-card">
+                        <div class="partner-logo">
+                            <img src="./Static/public/partners/partner-01.jpg" alt="合作伙伴1" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-placeholder\'><div class=\'logo-icon\'>🏢</div></div>'">
+                        </div>
+                        <div class="partner-info">
+                            <h3>合作伙伴名称1</h3>
+                            <p>战略合作伙伴</p>
+                        </div>
                     </div>
-                    <div class="commitment-card">
-                        <div class="commitment-icon">🚚</div>
-                        <h3>快速发货</h3>
-                        <p>现货产品当日发货<br/>定制产品按期交付</p>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">
+                            <img src="./Static/public/partners/partner-02.jpg" alt="合作伙伴2" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-placeholder\'><div class=\'logo-icon\'>🏢</div></div>'">
+                        </div>
+                        <div class="partner-info">
+                            <h3>合作伙伴名称2</h3>
+                            <p>技术合作伙伴</p>
+                        </div>
                     </div>
-                    <div class="commitment-card">
-                        <div class="commitment-icon">🛡️</div>
-                        <h3>质量保证</h3>
-                        <p>一年免费质保<br/>终身技术支持服务</p>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">
+                            <img src="./Static/public/partners/partner-03.jpg" alt="合作伙伴3" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-placeholder\'><div class=\'logo-icon\'>🏢</div></div>'">
+                        </div>
+                        <div class="partner-info">
+                            <h3>合作伙伴名称3</h3>
+                            <p>供应链伙伴</p>
+                        </div>
                     </div>
-                    <div class="commitment-card">
-                        <div class="commitment-icon">💼</div>
-                        <h3>定制服务</h3>
-                        <p>根据需求定制<br/>提供专业解决方案</p>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">
+                            <img src="./Static/public/partners/partner-04.jpg" alt="合作伙伴4" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-placeholder\'><div class=\'logo-icon\'>🏢</div></div>'">
+                        </div>
+                        <div class="partner-info">
+                            <h3>合作伙伴名称4</h3>
+                            <p>渠道合作伙伴</p>
+                        </div>
                     </div>
-                    <div class="commitment-card">
-                        <div class="commitment-icon">🔧</div>
-                        <h3>安装指导</h3>
-                        <p>提供安装教程<br/>远程技术指导服务</p>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">
+                            <img src="./Static/public/partners/partner-05.jpg" alt="合作伙伴5" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-placeholder\'><div class=\'logo-icon\'>🏢</div></div>'">
+                        </div>
+                        <div class="partner-info">
+                            <h3>合作伙伴名称5</h3>
+                            <p>研发合作伙伴</p>
+                        </div>
                     </div>
-                    <div class="commitment-card">
-                        <div class="commitment-icon">💰</div>
-                        <h3>价格优势</h3>
-                        <p>厂家直销价格<br/>批量采购更优惠</p>
+
+                    <div class="partner-card">
+                        <div class="partner-logo">
+                            <img src="./Static/public/partners/partner-06.jpg" alt="合作伙伴6" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-placeholder\'><div class=\'logo-icon\'>🏢</div></div>'">
+                        </div>
+                        <div class="partner-info">
+                            <h3>合作伙伴名称6</h3>
+                            <p>服务合作伙伴</p>
+                        </div>
                     </div>
                 </div>
             </div>
