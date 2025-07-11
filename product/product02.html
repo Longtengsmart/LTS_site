@@ -642,7 +642,7 @@
             line-height: 1.6;
         }
 
-        /* 聊天气泡样式 (复用) */
+        /* 优化后的Chat Bubble */
         .chat-bubble {
             position: fixed;
             bottom: 30px;
@@ -655,18 +655,84 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: chatPulse 4s ease-in-out infinite;
+            will-change: transform;
         }
 
         .chat-bubble:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 18px;
+            height: 18px;
+            background: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-bg);
+            animation: notificationBlink 3s ease-in-out infinite;
+            will-change: opacity;
         }
 
         .chat-icon {
             font-size: 1.5rem;
             color: white;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { 
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.5), 0 0 0 8px rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        @keyframes notificationBlink {
+            0%, 60%, 100% { opacity: 1; }
+            30%, 80% { opacity: 0.4; }
+        }
+
+        /* Chat Tooltip */
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: rgba(10, 10, 10, 0.95);
+        }
+
+        .chat-bubble:hover .chat-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         /* 响应式设计 */
@@ -767,6 +833,24 @@
             .thumbnail {
                 width: 60px;
                 height: 45px;
+            }
+
+            /* Mobile responsiveness for chat bubble */
+            .chat-bubble {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chat-icon {
+                font-size: 1.3rem;
+            }
+            
+            .chat-tooltip {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+                bottom: 65px;
             }
         }
 
