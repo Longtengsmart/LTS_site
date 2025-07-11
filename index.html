@@ -344,9 +344,21 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* 为渐变文字添加额外的投影层 */
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) 
-                    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+            position: relative;
+        }
+
+        /* 为渐变文字创建投影层 */
+        .hero .highlight::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            color: #ffffff;
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 8px rgba(0, 0, 0, 0.6),
+                0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
@@ -876,7 +888,7 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>引领<span class="highlight">智能汽车</span>新时代</h1>
+                    <h1>引领<span class="highlight" data-text="智能汽车">智能汽车</span>新时代</h1>
                     <p>专注于智能汽车配件研发的科技公司，致力于将创新技术与传统汽车配件相结合，推动汽车行业的智能化转型</p>
                     <div class="cta-buttons">
                         <a href="{{ site.baseurl }}/catalog" class="btn btn-primary">探索产品</a>
