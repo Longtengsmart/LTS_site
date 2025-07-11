@@ -354,11 +354,16 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* 重要：移除继承的text-shadow，避免与渐变冲突 */
-            text-shadow: none !important;
-            /* 添加2像素白色描边 */
-            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
-            text-stroke: 2px rgba(255, 255, 255, 0.8);
+            /* 使用多层text-shadow创建外边框效果，而不是每个笔画描边 */
+            text-shadow: 
+                -1px -1px 0 rgba(255, 255, 255, 0.8),
+                1px -1px 0 rgba(255, 255, 255, 0.8),
+                -1px 1px 0 rgba(255, 255, 255, 0.8),
+                1px 1px 0 rgba(255, 255, 255, 0.8),
+                -2px -2px 0 rgba(255, 255, 255, 0.6),
+                2px -2px 0 rgba(255, 255, 255, 0.6),
+                -2px 2px 0 rgba(255, 255, 255, 0.6),
+                2px 2px 0 rgba(255, 255, 255, 0.6);
         }
 
         .hero p {
