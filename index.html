@@ -332,6 +332,11 @@
             margin-bottom: 1.5rem;
             line-height: 1.2;
             word-wrap: break-word;
+            /* 添加文字投影增强可读性 */
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 8px rgba(0, 0, 0, 0.6),
+                0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .hero .highlight {
@@ -339,6 +344,9 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            /* 为渐变文字添加额外的投影层 */
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) 
+                    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
         }
 
         .hero p {
@@ -349,6 +357,10 @@
             margin-left: auto;
             margin-right: auto;
             word-wrap: break-word;
+            /* 为描述文字添加柔和的投影 */
+            text-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.8),
+                0 2px 6px rgba(0, 0, 0, 0.5);
         }
 
         .cta-buttons {
