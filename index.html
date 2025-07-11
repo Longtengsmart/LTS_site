@@ -356,6 +356,9 @@
             -webkit-text-fill-color: transparent;
             /* 重要：移除继承的text-shadow，避免与渐变冲突 */
             text-shadow: none !important;
+            /* 添加2像素白色描边 */
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+            text-stroke: 2px rgba(255, 255, 255, 0.8);
         }
 
         .hero p {
@@ -611,6 +614,9 @@
                 background-attachment: scroll; /* 移动端使用scroll而不是fixed */
                 background-size: cover;
                 background-position: center top; /* 移动端优先显示图片上部 */
+                /* 修复移动端顶部空白，确保hero从header底部开始 */
+                margin-top: -80px;
+                padding-top: 120px; /* 增加padding-top补偿margin-top */
             }
         }
 
