@@ -350,20 +350,8 @@
         }
 
         .hero .highlight {
-            background: var(--gradient-2);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* 使用多层text-shadow创建外边框效果，而不是每个笔画描边 */
-            text-shadow: 
-                -1px -1px 0 rgba(255, 255, 255, 0.8),
-                1px -1px 0 rgba(255, 255, 255, 0.8),
-                -1px 1px 0 rgba(255, 255, 255, 0.8),
-                1px 1px 0 rgba(255, 255, 255, 0.8),
-                -2px -2px 0 rgba(255, 255, 255, 0.6),
-                2px -2px 0 rgba(255, 255, 255, 0.6),
-                -2px 2px 0 rgba(255, 255, 255, 0.6),
-                2px 2px 0 rgba(255, 255, 255, 0.6);
+            /* 移除所有特殊效果，与周围文字保持统一 */
+            color: var(--text-primary);
         }
 
         .hero p {
