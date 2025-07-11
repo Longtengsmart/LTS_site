@@ -354,7 +354,8 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* 移除所有滤镜，保持渐变效果纯净 */
+            /* 重要：移除继承的text-shadow，避免与渐变冲突 */
+            text-shadow: none !important;
         }
 
         .hero p {
