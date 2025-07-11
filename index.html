@@ -571,7 +571,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: flex-start;
+            margin-bottom: 2rem;
         }
 
         .intro-details {
@@ -721,7 +722,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: flex-start;
+            margin-bottom: 2rem;
         }
 
         .quality-points {
@@ -764,7 +766,13 @@
             .intro-content,
             .quality-content {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            /* 移动端让图片在上方 */
+            .intro-content .intro-image {
+                order: -1;
             }
 
             .features-grid {
@@ -773,17 +781,27 @@
             }
 
             .feature-card {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
             }
 
             .image-placeholder {
-                height: 300px;
+                height: 250px;
+                margin: 0 auto 2rem auto;
+                max-width: 300px;
             }
 
             .about-intro,
             .tech-features,
             .quality-assurance {
-                padding: 60px 0;
+                padding: 50px 0;
+            }
+
+            .intro-details {
+                margin-top: 2rem;
+            }
+
+            .quality-points {
+                margin-top: 2rem;
             }
         }
 
@@ -792,15 +810,38 @@
             .quality-point {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
             }
 
             .detail-icon,
             .point-number {
                 align-self: center;
+                margin-bottom: 0.5rem;
             }
 
             .image-placeholder {
-                height: 250px;
+                height: 200px;
+                max-width: 250px;
+            }
+
+            .intro-content,
+            .quality-content {
+                gap: 1.5rem;
+            }
+
+            .about-intro,
+            .tech-features,
+            .quality-assurance {
+                padding: 40px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .section-title p {
+                font-size: 1rem;
+                padding: 0 1rem;
             }
         }
         
@@ -851,10 +892,10 @@
                 background-attachment: scroll; /* 移动端使用scroll而不是fixed */
                 background-size: cover;
                 background-position: center top; /* 移动端优先显示图片上部 */
-                /* 彻底消除移动端顶部空白 */
-                margin-top: -120px; /* 考虑header增加的padding，增大负margin */
-                padding-top: 180px; /* 相应增加padding保持内容位置 */
-                min-height: 100vh; /* 确保背景图片填满整个视口 */
+                /* 重置移动端设置，简化处理 */
+                margin-top: 0;
+                padding-top: 100px; /* 给header留出空间 */
+                min-height: calc(100vh - 100px); /* 减去header高度 */
             }
         }
 
@@ -890,13 +931,11 @@
             }
 
             .hero {
-                min-height: calc(100vh - 80px);
-                padding: 60px 0;
+                min-height: 100vh; /* 移动端占满整个视口 */
+                padding: 120px 0 60px 0; /* 上方padding为header留空间 */
             }
 
-            main {
-                margin-top: 100px; /* 移动端header更高，增加main的margin-top */
-            }
+
 
             .hero h1 {
                 font-size: 2.5rem;
