@@ -249,7 +249,6 @@
 
         /* Main Content */
         main {
-            margin-top: 80px;
             width: 100%;
             max-width: 100vw;
             overflow-x: hidden;
@@ -265,8 +264,8 @@
 
         /* Hero Section */
         .hero {
-            min-height: calc(100vh - 80px);
-            padding: 80px 0;
+            min-height: 100vh;
+            padding: 140px 0 80px 0; /* 顶部padding为fixed header留空间 */
             text-align: center;
             position: relative;
             width: 100%;
@@ -561,86 +560,83 @@
             white-space: nowrap;
         }
 
-        /* About Intro Section */
-        .about-intro {
+        /* Company Advantages Section */
+        .company-advantages {
             padding: 100px 0;
             background: rgba(255, 255, 255, 0.02);
         }
 
-        .intro-content {
+        .advantages-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: flex-start;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
-        .intro-details {
-            display: grid;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .detail-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .detail-icon {
-            font-size: 2rem;
-            min-width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .advantage-item {
+            text-align: center;
+            padding: 2.5rem 2rem;
             background: var(--card-bg);
-            border-radius: 15px;
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .detail-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .detail-item p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .intro-image {
+            border-radius: 20px;
+            transition: all 0.4s ease;
             position: relative;
         }
 
-        .image-placeholder {
-            width: 100%;
-            height: 400px;
+        .advantage-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
             border-radius: 20px;
-            overflow: hidden;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .image-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .advantage-item:hover::before {
+            opacity: 0.05;
         }
 
-        .placeholder-content {
-            display: flex;
-            flex-direction: column;
+        .advantage-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+
+        .advantage-number {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            color: var(--text-secondary);
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .placeholder-icon {
-            font-size: 4rem;
+        .advantage-item h3 {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .advantage-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
         /* Tech Features Section */
@@ -712,126 +708,111 @@
             z-index: 2;
         }
 
-        /* Quality Assurance Section */
-        .quality-assurance {
+        /* Service Commitment Section */
+        .service-commitment {
             padding: 100px 0;
-            background: rgba(255, 255, 255, 0.02);
         }
 
-        .quality-content {
+        .commitment-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: flex-start;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
         }
 
-        .quality-points {
-            margin-top: 3rem;
+        .commitment-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
         }
 
-        .quality-point {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            align-items: flex-start;
-        }
-
-        .point-number {
-            min-width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .commitment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: var(--gradient-2);
-            color: white;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            border-radius: 20px;
         }
 
-        .point-content h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        .commitment-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .commitment-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+
+        .commitment-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .commitment-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
+            position: relative;
+            z-index: 2;
         }
 
-        .point-content p {
+        .commitment-card p {
             color: var(--text-secondary);
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
         /* Responsive Design for New Sections */
         @media (max-width: 768px) {
-            .intro-content,
-            .quality-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            /* 移动端让图片在上方 */
-            .intro-content .intro-image {
-                order: -1;
-            }
-
+            .advantages-grid,
+            .commitment-grid,
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .feature-card {
+            .feature-card,
+            .advantage-item,
+            .commitment-card {
                 padding: 2rem 1.5rem;
             }
 
-            .image-placeholder {
-                height: 250px;
-                margin: 0 auto 2rem auto;
-                max-width: 300px;
-            }
-
-            .about-intro,
+            .company-advantages,
             .tech-features,
-            .quality-assurance {
+            .service-commitment {
                 padding: 50px 0;
-            }
-
-            .intro-details {
-                margin-top: 2rem;
-            }
-
-            .quality-points {
-                margin-top: 2rem;
             }
         }
 
         @media (max-width: 480px) {
-            .detail-item,
-            .quality-point {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            .detail-icon,
-            .point-number {
-                align-self: center;
-                margin-bottom: 0.5rem;
-            }
-
-            .image-placeholder {
-                height: 200px;
-                max-width: 250px;
-            }
-
-            .intro-content,
-            .quality-content {
+            .advantages-grid,
+            .commitment-grid {
                 gap: 1.5rem;
             }
 
-            .about-intro,
+            .advantage-item,
+            .commitment-card {
+                padding: 2rem 1rem;
+            }
+
+            .company-advantages,
             .tech-features,
-            .quality-assurance {
+            .service-commitment {
                 padding: 40px 0;
             }
 
@@ -842,6 +823,16 @@
             .section-title p {
                 font-size: 1rem;
                 padding: 0 1rem;
+            }
+
+            .advantage-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .commitment-icon {
+                font-size: 2.5rem;
             }
         }
         
@@ -892,10 +883,8 @@
                 background-attachment: scroll; /* 移动端使用scroll而不是fixed */
                 background-size: cover;
                 background-position: center top; /* 移动端优先显示图片上部 */
-                /* 重置移动端设置，简化处理 */
-                margin-top: 0;
-                padding-top: 100px; /* 给header留出空间 */
-                min-height: calc(100vh - 100px); /* 减去header高度 */
+                padding-top: 140px; /* 与桌面端保持一致的header空间 */
+                min-height: 100vh; /* 占满整个视口 */
             }
         }
 
@@ -1195,38 +1184,33 @@
             </div>
         </section>
 
-        <!-- 关于我们简介 -->
-        <section class="about-intro">
+        <!-- 公司优势 -->
+        <section class="company-advantages">
             <div class="container">
-                <div class="intro-content">
-                    <div class="intro-text">
-                        <div class="section-title">
-                            <h2>专业智能汽车配件研发</h2>
-                            <p>中山隆腾智能科技有限公司致力于智能汽车配件的研发与创新</p>
-                        </div>
-                        <div class="intro-details">
-                            <div class="detail-item">
-                                <div class="detail-icon">🔬</div>
-                                <h3>技术创新</h3>
-                                <p>拥有专业的研发团队，持续投入智能化技术的研发与应用，为汽车行业提供前沿的智能解决方案。</p>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-icon">⚙️</div>
-                                <h3>精工制造</h3>
-                                <p>采用先进的生产工艺和严格的质量控制体系，确保每一件产品都达到行业领先的品质标准。</p>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-icon">🚗</div>
-                                <h3>智能驾驶</h3>
-                                <p>专注于智能驾驶相关配件的开发，助力传统汽车向智能化、数字化方向转型升级。</p>
-                            </div>
-                        </div>
+                <div class="section-title">
+                    <h2>为什么选择隆腾智能</h2>
+                    <p>专业团队，优质服务，值得信赖的智能汽车配件供应商</p>
+                </div>
+                <div class="advantages-grid">
+                    <div class="advantage-item">
+                        <div class="advantage-number">01</div>
+                        <h3>专业研发团队</h3>
+                        <p>拥有多年汽车行业经验的资深工程师团队，专注智能化技术创新与应用。</p>
                     </div>
-                    <div class="intro-image">
-                        <div class="image-placeholder">
-                            <img src="./Static/public/company-intro.jpg" alt="公司介绍" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-content\'><div class=\'placeholder-icon\'>🏢</div><p>智能制造基地</p></div>'">
-                        </div>
+                    <div class="advantage-item">
+                        <div class="advantage-number">02</div>
+                        <h3>严格品质控制</h3>
+                        <p>建立完善的质量管理体系，从原材料到成品全程质量监控，确保产品可靠性。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-number">03</div>
+                        <h3>快速响应服务</h3>
+                        <p>提供7×24小时技术支持，专业客服团队快速响应客户需求，解决技术问题。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-number">04</div>
+                        <h3>持续创新发展</h3>
+                        <p>紧跟行业技术发展趋势，持续投入研发，为客户提供最新的智能化解决方案。</p>
                     </div>
                 </div>
             </div>
@@ -1264,51 +1248,43 @@
             </div>
         </section>
 
-        <!-- 品质保证 -->
-        <section class="quality-assurance">
+        <!-- 服务承诺 -->
+        <section class="service-commitment">
             <div class="container">
-                <div class="quality-content">
-                    <div class="quality-image">
-                        <div class="image-placeholder">
-                            <img src="./Static/public/quality-lab.jpg" alt="品质检测实验室" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'placeholder-content\'><div class=\'placeholder-icon\'>🔬</div><p>品质检测实验室</p></div>'">
-                        </div>
+                <div class="section-title">
+                    <h2>我们的服务承诺</h2>
+                    <p>客户满意是我们的首要目标，为您提供全方位的服务保障</p>
+                </div>
+                <div class="commitment-grid">
+                    <div class="commitment-card">
+                        <div class="commitment-icon">📞</div>
+                        <h3>24小时在线</h3>
+                        <p>全天候客服支持<br/>随时为您解答疑问</p>
                     </div>
-                    <div class="quality-text">
-                        <div class="section-title">
-                            <h2>品质保证</h2>
-                            <p>严格的质量控制体系，确保产品品质始终如一</p>
-                        </div>
-                        <div class="quality-points">
-                            <div class="quality-point">
-                                <div class="point-number">01</div>
-                                <div class="point-content">
-                                    <h4>原材料筛选</h4>
-                                    <p>精选优质原材料，从源头保证产品品质基础</p>
-                                </div>
-                            </div>
-                            <div class="quality-point">
-                                <div class="point-number">02</div>
-                                <div class="point-content">
-                                    <h4>生产过程监控</h4>
-                                    <p>全程质量监控，每个环节都有严格的检测标准</p>
-                                </div>
-                            </div>
-                            <div class="quality-point">
-                                <div class="point-number">03</div>
-                                <div class="point-content">
-                                    <h4>出厂检测</h4>
-                                    <p>多重检测程序，确保每件产品都符合质量要求</p>
-                                </div>
-                            </div>
-                            <div class="quality-point">
-                                <div class="point-number">04</div>
-                                <div class="point-content">
-                                    <h4>售后服务</h4>
-                                    <p>完善的售后服务体系，为客户提供持续的技术支持</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="commitment-card">
+                        <div class="commitment-icon">🚚</div>
+                        <h3>快速发货</h3>
+                        <p>现货产品当日发货<br/>定制产品按期交付</p>
+                    </div>
+                    <div class="commitment-card">
+                        <div class="commitment-icon">🛡️</div>
+                        <h3>质量保证</h3>
+                        <p>一年免费质保<br/>终身技术支持服务</p>
+                    </div>
+                    <div class="commitment-card">
+                        <div class="commitment-icon">💼</div>
+                        <h3>定制服务</h3>
+                        <p>根据需求定制<br/>提供专业解决方案</p>
+                    </div>
+                    <div class="commitment-card">
+                        <div class="commitment-icon">🔧</div>
+                        <h3>安装指导</h3>
+                        <p>提供安装教程<br/>远程技术指导服务</p>
+                    </div>
+                    <div class="commitment-card">
+                        <div class="commitment-icon">💰</div>
+                        <h3>价格优势</h3>
+                        <p>厂家直销价格<br/>批量采购更优惠</p>
                     </div>
                 </div>
             </div>
