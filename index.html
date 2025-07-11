@@ -292,12 +292,27 @@
             height: 100%;
             background: linear-gradient(
                 135deg, 
-                rgba(10, 10, 10, 0.7) 0%, 
-                rgba(0, 212, 255, 0.2) 30%, 
-                rgba(124, 58, 237, 0.2) 70%, 
-                rgba(10, 10, 10, 0.7) 100%
+                rgba(10, 10, 10, 0.85) 0%, 
+                rgba(0, 212, 255, 0.15) 30%, 
+                rgba(124, 58, 237, 0.15) 70%, 
+                rgba(10, 10, 10, 0.85) 100%
             );
             z-index: 1;
+        }
+
+        /* 为文字区域添加额外的背景增强 */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 100%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(10, 10, 10, 0.4) 0%,
+                transparent 70%
+            );
+            padding: 2rem;
+            border-radius: 20px;
         }
 
         /* 动态光效层 */
@@ -319,12 +334,7 @@
             50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            max-width: 100%;
-        }
+
 
         .hero h1 {
             font-size: 3.5rem;
@@ -344,8 +354,7 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* 使用轻微的drop-shadow，强度降低避免变黑 */
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+            /* 移除所有滤镜，保持渐变效果纯净 */
         }
 
         .hero p {
